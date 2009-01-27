@@ -1,0 +1,29 @@
+<% if @product.has_kits? %>
+            <div class="all_kits">
+                <h4 class="border_top_kits">Check out our kits</h4>
+                <div class="content_main_kits" id="kits_box">
+<% for k in @product.kits.find(:all, :order => "`order`") %>
+<% if !k.products.empty? %>
+                    <div class="kit" <%= "id=#{k.kit_type}_kit" %>>
+                        <p class="name_kit"><%= image_tag "front/silver_stars.gif" %>
+                        <%= k.kit_type.capitalize %></p>
+                        <div class="kit_image"><%= image_tag "products/#{@product.id}-#{k.kit_type}_kit_thumb.jpg" %></div>
+                        <div class="price">$<%= k.price %>
+<%= link_to_remote "", :url => { :controller => 'home', :action => 'add_kit_to_cart',
+:id => k.id }, :html => { :class => 'shopping_catalog' } %>
+                        <!-- a href="" class="shopping_catalog"></a -->
+                        </div>
+                        <div class="you_save"><p><%= "You save: $#{k.discounts.round(2)}" %></p></div>
+                        <!-- a href="" class="see_all">View Kit Content</a -->
+                        <div id="see_all_container">
+                        <%= link_to_remote "View Kit Contents", :url => { :controller => 'kits', :action => 'show_products', :id => k.id}, :html => { :class => 'see_all' } %>
+                        </div>
+                    </div>
+<% end %>
+<% end %>
+<div id="kits_products_container" style="display: none; float: left;">
+  <div id="kits_products_inner_container"></div>
+</div>
+              </div>
+            </div>
+<% end %>

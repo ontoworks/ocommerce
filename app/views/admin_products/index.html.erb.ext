@@ -1,0 +1,251 @@
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Editor Grid Example</title>
+<link rel="stylesheet" type="text/css" href="javascripts/ext/resources/css/ext-all.css" />
+
+ 	<link rel="stylesheet" type="text/css" href="javascripts/ext/resources/css/xtheme-default.css" /><!-- LIBS -->
+ 	<script type="text/javascript" src="javascripts/ext/adapter/ext/ext-base.js"></script>
+
+ 	<!-- ENDLIBS -->
+
+    <script type="text/javascript" src="javascripts/ext/ext-all.js"></script>
+
+    <!-- script type="text/javascript" src="GroupingView.js"></script -->
+    <!-- script type="text/javascript" src="edit-grid.js"></script -->
+    <!-- link rel="stylesheet" type="text/css" href="grid-examples.css" / -->
+
+<!-- Common Styles for the examples -->
+
+<link rel="stylesheet" type="text/css" href="../examples.css" />
+
+</head>
+<body>
+<script type="text/javascript" src="../examples.js"></script><link rel="stylesheet" type="text/css" href="../lib.css" /><div id="lib-bar" class="x-toolbar" style="border-width:0 1px 1px"><div id="lib-bar-inner"> <span>Theme:</span>&#160;&#160;<select id="exttheme"><option value="default">Ext Blue</option><option value="gray">Gray Theme</option></select></div></div>
+<h1>Editor Grid Example</h1>
+<p>This example shows how to create a grid with inline editing.</p>
+<p>Note that the js is not minified so it is readable. See <a href="edit-grid.js">edit-grid.js</a>.</p>
+
+<p>The data in the grid is loaded from <a href="plants.xml">plants.xml</a>.</p>
+
+<!-- you must define the select box here, as the custom editor for the 'Light' column will require it -->
+<select name="light" id="light" style="display: none;">
+	<option value="Shade">Shade</option>
+	<option value="Mostly Shady">Mostly Shady</option>
+	<option value="Sun or Shade">Sun or Shade</option>
+
+	<option value="Mostly Sunny">Mostly Sunny</option>
+
+	<option value="Sunny">Sunny</option>
+</select>
+
+<div id="editor-grid"></div>
+
+
+<script type="text/javascript">
+/*
+ * Ext JS Library 2.0.1
+ * Copyright(c) 2006-2008, Ext JS, LLC.
+ * licensing@extjs.com
+ * 
+ * http://extjs.com/license
+ */
+
+Ext.onReady(function(){
+    Ext.QuickTips.init();
+
+    function formatDate(value){
+        return value ? value.dateFormat('M d, Y') : '';
+    };
+    // shorthand alias
+    var fm = Ext.form;
+
+    // custom column plugin example
+//    var checkColumn = new Ext.grid.CheckColumn({
+//       header: "Indoor?",
+//       dataIndex: 'indoor',
+//       width: 55
+//    });
+
+    // the column model has information about grid columns
+    // dataIndex maps the column to the specific data field in
+    // the data store (created below)
+    var cm = new Ext.grid.ColumnModel([{
+           id:'image',
+           header: "Image",
+           dataIndex: 'image',
+           width: 100
+//           width: 100,
+//           editor: new fm.TextField({
+//               allowBlank: false
+//           })
+        },{
+           header: "Name",
+           dataIndex: 'name',
+           width: 200
+//           width: 130,
+//           editor: new Ext.form.ComboBox({
+//               typeAhead: true,
+//               triggerAction: 'all',
+//               transform:'light',
+//               lazyRender:true,
+//               listClass: 'x-combo-list-small'
+//            })
+        },{
+           header: "Description",
+           dataIndex: 'description',
+           width: 200
+//           editor: new fm.NumberField({
+//               allowBlank: false,
+//               allowNegative: false,
+//               maxValue: 100000
+//           })
+        },{
+           header: "Model",
+           dataIndex: 'model',
+           width: 30,
+//           editor: new fm.DateField({
+//                format: 'm/d/y',
+//                minValue: '01/01/06',
+//                disabledDays: [0, 6],
+//                disabledDaysText: 'Plants are not available on the weekends'
+//            })
+//        },
+        },{
+           header: "Condition",
+           dataIndex: 'condition',
+           width: 30,
+//           editor: new Ext.form.ComboBox({
+//               typeAhead: true,
+//               triggerAction: 'all',
+//               transform:'condition',
+//               lazyRender:true,
+//               listClass: 'x-combo-list-small'
+//            })
+        },{
+           header: "Status",
+           dataIndex: 'status',
+           width: 10,
+//           editor: new Ext.form.ComboBox({
+//               typeAhead: true,
+//               triggerAction: 'all',
+//               transform:'status',
+//               lazyRender:true,
+//               listClass: 'x-combo-list-small'
+//            })
+        },{
+           header: "Manufacturer",
+           dataIndex: 'manufacturer-id',
+           width: 60,
+//           editor: new Ext.form.ComboBox({
+//               typeAhead: true,
+//               triggerAction: 'all',
+//               transform:'manufacturer-id',
+//               lazyRender:true,
+//               listClass: 'x-combo-list-small'
+//            })
+        }
+//        checkColumn
+    ]);
+
+    // by default columns are sortable
+    cm.defaultSortable = true;
+
+    // this could be inline, but we want to define the Plant record
+    // type so we can add records dynamically
+    var Plant = Ext.data.Record.create([
+           // the "name" below matches the tag name to read, except "availDate"
+           // which is mapped to the tag "availability"
+           {name: 'image', type: 'string'},
+           {name: 'name', type: 'string'},
+           {name: 'description', type: 'string'},
+           {name: 'model', type: 'string'},
+           {name: 'condition'},
+           {name: 'status'},
+           {name: 'manufacturer-id'}
+      ]);
+
+    // create the Data Store
+    var store = new Ext.data.Store({
+        // load using HTTP
+        url: 'products.xml',
+
+        // the return will be XML, so lets set up a reader
+        reader: new Ext.data.XmlReader({
+               // records will have a "plant" tag
+               record: 'product'
+           }, Product),
+
+        sortInfo:{field:'status', direction:'DESC'}
+    });
+
+    // create the editor grid
+    var grid = new Ext.grid.EditorGridPanel({
+        store: store,
+        cm: cm,
+        renderTo: 'editor-grid',
+        width:630,
+        height:300,
+        autoExpandColumn:'common',
+        title:'Edit Products?',
+        frame:true,
+//        plugins:checkColumn,
+        clicksToEdit:1,
+
+        tbar: [{
+            text: 'Add Plant',
+            handler : function(){
+                var p = new Product({
+//                    common: 'New Plant 1',
+//                    light: 'Mostly Shade',
+//                    price: 0,
+//                    availDate: (new Date()).clearTime(),
+//                    indoor: false
+                });
+                grid.stopEditing();
+                store.insert(0, p);
+                grid.startEditing(0, 0);
+            }
+        }]
+    });
+
+    // trigger the data store load
+    store.load();
+});
+
+Ext.grid.CheckColumn = function(config){
+    Ext.apply(this, config);
+    if(!this.id){
+        this.id = Ext.id();
+    }
+    this.renderer = this.renderer.createDelegate(this);
+};
+
+Ext.grid.CheckColumn.prototype ={
+    init : function(grid){
+        this.grid = grid;
+        this.grid.on('render', function(){
+            var view = this.grid.getView();
+            view.mainBody.on('mousedown', this.onMouseDown, this);
+        }, this);
+    },
+
+    onMouseDown : function(e, t){
+        if(t.className && t.className.indexOf('x-grid3-cc-'+this.id) != -1){
+            e.stopEvent();
+            var index = this.grid.getView().findRowIndex(t);
+            var record = this.grid.store.getAt(index);
+            record.set(this.dataIndex, !record.data[this.dataIndex]);
+        }
+    },
+
+    renderer : function(v, p, record){
+        p.css += ' x-grid3-check-col-td'; 
+        return '<div class="x-grid3-check-col'+(v?'-on':'')+' x-grid3-cc-'+this.id+'">&#160;</div>';
+    }
+};
+</script>
+</body>
+</html>

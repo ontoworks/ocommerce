@@ -1,0 +1,13 @@
+            <div class="list_categories">
+            <span class="list_categories_border"></span>
+            	<h4>Printers</h4>
+                <div class="content_categories">
+                    <dl style="width: 138px;">
+                        <dt>Categories</dt>
+                        <% for cat in @categories %>
+                            <dd><a href="/products/category/<%= cat.id.to_s+'-'+cat.text %>"><%= cat.text %></a></dd>
+                        <% end %>
+                            
+                    </dl>
+            	</div>
+            </div>

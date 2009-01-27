@@ -1,0 +1,2 @@
+module WarrantiesHelper
+end

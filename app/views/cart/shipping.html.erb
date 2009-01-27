@@ -1,0 +1,87 @@
+<!-- =======content middle=======-->
+<script type="text/javascript">
+  function freight_load() {
+    ["show_freight_info"].each(Element.hide);
+    ["freight_wait"].each(Element.show);
+  }
+</script>
+
+<div class="content_shopping_checkout">
+  <h2>Check Out Proccess</h2>
+  <div class="steps">
+    <p class="one deactive">Login</p>
+    <p class="two">Customer Information<span></span></p>
+    <p class="three active">Shipping Method</p>
+    <p class="four">Payment Information</p>
+    <p class="five">Confirmation</p>
+  </div>
+  <br />
+
+  <h3> Shipping Information </h3>
+  <%= error_messages_for 'order' %>
+
+  <div id="freight_query">
+  <% form_for @order, :url => step4_path, :html => {:name => "orderform"} do |f|%>
+    <% shipping_carriers(@cart).each do |carrier| %>
+    <% if carrier == "Freight" %><% next %> <%end %>
+    <h5><%= carrier %></h5>
+    <img src="<%= "/images/front/#{carrier.upcase}_shopping.gif" %>" style="float: right;" />
+
+    <%=  regular_shipping_methods(carrier, @order, @cart) %>
+    <%= hidden_field(:order, :id, :value => @order.id)%>
+    <%= hidden_field(:order, :carrier, :value => carrier)%>
+    <div class="clear">
+    <a href="javascript:document.orderform.submit();" class="general_button"><span class="cierre_boton_checkout"></span><b>Ship with <%= carrier %></b></a></div><br /><br />
+
+    <% end # END OF EACH %>
+  <% end # END OF FORM %>
+  </div>
+
+  <h5>Freight Carriers</h5>
+  <div id="show_freight_info">
+    <% form_remote_tag :url => { :action => "freight_cost"}, :loading => "freight_load()",
+:html => {:name => "calcfreightform"} do %>
+      <h6>Freight Options</h6>
+      <%= check_box(:options, :liftcharge, {}, "true", "false") %> Liftcharge?</br>
+      <%= check_box(:options, :inside_delivery, {}, "true", "false") %> Inside Delivery?<br/>
+      <h6>Shipping to: </h6>
+      <%= radio_button(:options, :conditions,  "RES") %> Residential address<br/>
+      <%= radio_button(:options, :conditions,  "BIZ_WITH") %> Business <b>with</b> a dock or a forklift<br/>
+      <%= radio_button(:options, :conditions,  "BIZ_WITHOUT") %> Business <b>without</b> a dock or a forklift <br/>
+      <%= hidden_field(:options, :weight, :value => @cart.total_weight) %>
+      <%= hidden_field(:options, :to_zip, :value => @order.delivery_postcode)%>
+      <% # = image_tag "front/waiting_ajax.gif" %>
+      <br/>
+      <%= submit_tag "Get Freight Quotes" %>
+
+
+        <!-- div class="clear">
+      <a href="javascript:document.calcfreightform.submit();" class="general_button">
+<span class="cierre_boton_checkout"></span><b>Get Freight Quotes</b></a>
+<small>(This could take a few seconds)</small>
+        </div -->
+    <% end %>
+  </div>
+
+  <div id="freight_wait" <%= hide?("freight_wait") %> >
+  <div class="clear">
+  <%= image_tag "front/waiting_ajax.gif" %>
+  <small>Please wait a moment while querying for freight quotes ...</small>
+  </div>
+  </div>
+
+  <div id="freight_quotes" <%= hide?("freight_quotes") %> >
+    <% form_for @order, :url => step4_path, :html => {:name => "freightform"} do |f| %>
+      <div id="freight_info">
+      </div>
+      <%= hidden_field(:order, :id, :value => @order.id)%>
+      <%= hidden_field(:order, :carrier, :value => "Freight")%>
+      <% #= submit_tag "Continue with Freight Carriers"%>
+      <div class="clear">
+        <a href="javascript:document.freightform.submit();" class="general_button">
+        <span class="cierre_boton_checkout"></span>
+        <b>Continue with Freight Carriers</b></a>
+      </div>
+    <% end %>
+  </div>
+  </div>

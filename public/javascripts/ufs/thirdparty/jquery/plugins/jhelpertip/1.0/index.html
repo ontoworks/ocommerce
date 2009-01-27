@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="jquery.jHelperTip.1.0.js"></script>
+<script language="javascript">
+$(function(){
+	$("#test").jHelperTip({
+		trigger: "click",
+		dC:"#tip1", 
+		autoClose: false, 
+		opacity: 0.9
+	});
+	$("#test2").jHelperTip({
+		trigger: "hover",
+		source: "ajax",
+		type: "GET", 
+		url: 'ajax.html',
+		data: 'name=Kean&age=63',
+		loadingImg: 'ajax-loader.gif',
+		loadingText: 'loading...',
+		autoClose: false, 
+		opacity: 0.9
+	});
+	$(".action img").jHelperTip({
+		trigger: "hover", 
+		source: "attribute", 
+		attrName: "alt", 
+		opacity: 0.8, 
+		autoClose:true
+	});
+	$("#silk").jHelperTip({
+		trigger: "hover", 
+		source: "attribute", 
+		attrName: "href", 
+		opacity: 0.8, 
+		autoClose:true
+	});
+});
+</script>
+<style>
+.action img {
+cursor:pointer;
+}
+
+#jHelperTipAttrContainer{ 
+background:#FFFFCC;border:1px solid #FF3333; color:#333; display:none;
+}
+
+#jHelperTipContainer {
+display:none;
+}
+
+pre {
+border:1px dashed #999;
+padding:10px;
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jHelperTip 1.0 demo</title>
+</head>
+
+<body>
+<h2>jHelperTip 1.0 demo</h2>
+
+<h3>Click activated tooltip</h3>
+<pre>$(&quot;#test&quot;).jHelperTip({
+ trigger: &quot;click&quot;,
+ dC:&quot;#tip1&quot;, 
+ autoClose: false, 
+ opacity: 0.9
+});</pre>
+<div>Matt is doing something <span id="test" style="cursor:pointer;color:#0F0">dangerous</span></div>
+<div id="jHelperTipContainer" style="border:1px solid #CCC; background:#0066CC; color:#FFF; display:none"></div>
+<div id="tip1" style="width:200px;height:300px; border:1px solid #CCC; background:#0066CC; color:#FFF;">
+<div class="jHelperTipClose" style="cursor:pointer;color:#F00">click here to close</div>
+<p>  adj.</p>
+<p>1. Involving or filled with danger; perilous.</p>
+<p> 2. Being able or likely to do harm.</p>
+</div>
+<div id="jHelperTipAttrContainer">asdsdf</div>
+<h3>Hover activated tooltips</h3>
+
+<pre>$("#test2").jHelperTip({
+ trigger: "hover",
+ source: "ajax",
+ type: "GET", 
+ url: 'ajax.html',
+ data: 'name=Kean&age=63',
+ loadingImg: 'ajax-loader.gif',
+ loadingText: 'loading...',
+ autoClose: false, 
+ opacity: 0.9
+});
+
+</pre>
+<div>Matt is doing something <span id="test2" style="cursor:pointer;color:#0F0">dangerous</span></div>
+<pre>$(&quot;.action img&quot;).jHelperTip({<br /> trigger: &quot;hover&quot;, <br /> source: &quot;attribute&quot;, <br /> attrName: &quot;alt&quot;, <br /> opacity: 0.8, <br /> autoClose:true<br />});</pre>
+<div class="action">
+<img src="i/text_align_center.png" alt="Align Center" /> 
+<img src="i/text_align_justify.png" alt="Align Justify" />
+<img src="i/text_align_left.png" alt="Align Left" /> 
+<img src="i/text_align_right.png" alt="Align Right" /> 
+<img src="i/text_allcaps.png" alt="All Caps" />
+<img src="i/text_bold.png" alt="Bold" />
+<img src="i/text_columns.png" alt="Columns" />
+<img src="i/text_heading_1.png" alt="Heading 1" />
+    </tr>
+  </table>
+</div>
+<h3>The CSS</h3>
+<pre>#jHelperTipAttrContainer{ 
+ background:#FFFFCC;border:1px solid #FF3333; color:#333; display:none;
+}</pre>
+<pre>#jHelperTipContainer {
+ display:none;
+} </pre>
+<sub>*Note: jHelperTip demo used <a href="http://www.famfamfam.com/lab/icons/silk/" id="silk">Silk icon set 1.3</a></sub>
+</body>
+</html>

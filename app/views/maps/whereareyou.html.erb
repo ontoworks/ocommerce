@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAh8YMaQeuCHkO43E2JUvWTxRmZEcYa40z60h8S0KJXuyf8zFfuxQVDbWuw2v6vk0bEpjEk24vpn3Svg"></script>
+<script type="text/javascript">
+  google.load("maps", "2");
+   
+  // Call this function when the page has been loaded
+  function load() {
+    var map = new google.maps.Map2(document.getElementById("map"));
+    map.setCenter(new google.maps.LatLng(6.256122, -75.578492), 13);
+    
+    if (google.loader.ClientLocation) {
+      alert("Usted está en "+google.loader.ClientLocation.address.city+" en Lat:"+google.loader.ClientLocation.latitude+" Long:"+google.loader.ClientLocation.longitude);
+    } else {
+      alert(google.loader);
+    }
+ 
+  }
+  google.setOnLoadCallback(initialize);
+</script>
+
+
+  </head>
+  <body onload="load()" onunload="google.maps.Unload()">
+    <div id="map" style="width: 500px; height: 300px"></div>
+  </body>
+</html>

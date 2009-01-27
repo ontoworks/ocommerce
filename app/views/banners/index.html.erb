@@ -1,0 +1,86 @@
+
+<%
+  @p2 = Product.find(3223)
+  @p1 = Product.find(3190)
+%>
+
+<!-- DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<%= stylesheet_link_tag "home" %>
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/reset-fonts-grids/reset-fonts-grids.css">
+
+<%= javascript_include_tag "application" %>
+
+<%= javascript_include_tag "ui/components/item/behavior" %>
+<%= javascript_include_tag "ufs/thirdparty/jquery/jquery" %>
+</head>
+<body>
+  <div id="doc2">
+    <div id="hd">
+      <div class="promo">
+      </div>
+      <div class="promo">
+	<div id="top_promo1" class="border_top"><div></div></div>
+	<div id="top_promo2" class="border_top_warranty" style="display:none;"><div></div></div>
+	
+        <div class="center_promo">
+          <a href="" class="left_arrow" style="display:none;"></a>
+          <div class="promo_box">
+            <%= image_tag "front/9000MFP_promo.gif" %>
+            <div class="promo_description">
+              <p class="brand">HP LJ 9000MFP</p>
+	      <!-- a href="" class="product_information"></a -->
+              <p class="product">Laser Printer</p>
+              <p class="only">ONLY</p>
+              <p class="prize">$1499.<span class="big">99</span></p>
+              <p class="before">Before:<span>$1599.99</span></p>
+              <a href="<%= @p2.url %>" class="button_promo"><span class="cierre_boton_promo"></span><b>Buy Now !</b></a>
+            </div>
+          </div>
+          <div class="division_promo"></div>
+          <a href="" class="right_arrow" style="display:none;"></a>
+          <div class="promo_box">
+            <%= image_tag "front/C4251A_promo.gif" %>
+            <div class="promo_description">
+              <p class="brand">HP LJ 4050DN</p><!-- a href="" class="product_information"></a -->
+              <p class="product">Laser Printer</p>
+              <p class="only">ONLY</p>
+              <p class="prize">$149.<span>99</span></p>
+              <p class="before">Before:<span>$249.99</span></p>
+              <a href="<%= @p1.url %>" class="button_promo"><span class="cierre_boton_promo"></span><b>Buy Now !</b></a>
+            </div>
+          </div>
+        </div>
+        <div class="border_bottom">
+        </div>
+        <div class="promo_menu" style="display:none;">
+          <a href="" class="active"><b></b>1&nbsp;&nbsp;&nbsp;2</a>
+          <a href="">3&nbsp;&nbsp;&nbsp;4</a>
+          <a href="">5&nbsp;&nbsp;&nbsp;6</a>
+          <p>|</p>
+          <a href="" class="pause"></a>
+          <a href="" class="stop"></a>
+          <span class="menu_border_bottom"></span>
+        </div>
+      </div>
+    </div>
+    <div id="bd">
+      <div class="yui-g">
+	<div class="yui-u first">
+	  <p>Product 1: <%= @p1.name %></p>
+	</div>
+	<div class="yui-u">
+	  <p>Product 2: <%= @p2.name %></p>
+	</div>
+      </div>
+    </div>
+    <div id="ft">
+    </div>
+  </div>
+</body>
+</html>

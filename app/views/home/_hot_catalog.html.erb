@@ -1,0 +1,26 @@
+<div class="content_middle">
+<% j = 1 %>
+<% @hot_products.each do |product| %>
+       <% j.remainder(4) == 0 ? last_product = true : last_product = false %>
+            <div class="catalog">
+                <div class="each_product <%= last_product ? ' last_product' : '' %>">
+                    <div class="image_product">
+                      <!-- a href="<%= "/products/#{product.id.to_s}-#{product.model}-#{product.name.downcase().gsub(/\s/, '_')}" %>" -->
+                      <a href="<%= product.url %>">
+                      <% #= image_tag("products/#{product.model}_thumb.jpg") %>
+                      <img class="product_thumb" href="ui/product/quickview/<%= product.id %>" 
+			   src="<%= "http://theprinterdepot.net/images/#{product.image_url}" %>" />
+                      </a>
+                    </div>
+                    <!-- a href="" class="product_information"></a -->
+                    <div class="price">$ <%= product.price(usergroup) %></div>
+                    <!-- a href="" class="shopping_catalog"></a -->
+                    <%= link_to_remote "", :url => { :controller => 'home', :action => 'add_to_cart', :id => product.id }, :html => { :class => 'shopping_catalog' } %>
+                    <div class="brand"><%= product.name.downcase().titleize() %></div>
+                    <!-- div class="product">Laser Printer</div>
+                    <a href="" class="see_all">See all Laser Prints</a -->
+                </div>
+            </div>
+<% j += 1 %>
+<% end %>
+</div>

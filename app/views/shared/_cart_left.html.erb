@@ -1,0 +1,10 @@
+   	    <!-- =======left column=======-->
+    	<div class="left_column">
+          <% # if !@cart.nil? %>
+          <% if show_component_for_uri?("cart", @uri) %>
+            <%= render :partial => 'shared/cart' %>
+
+            <img src="/images/front/sponsors.gif" title="We proudly accept" />
+          <% end %>
+        </div>
+   	    <!-- ======= end of left column=======-->

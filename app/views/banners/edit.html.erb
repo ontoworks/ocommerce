@@ -1,0 +1,12 @@
+<h1>Editing banner</h1>
+
+<% form_for(@banner) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @banner %> |
+<%= link_to 'Back', banners_path %>

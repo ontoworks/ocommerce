@@ -1,0 +1,15 @@
+if !@error.nil?
+  page.replace_html "coupon-error", "<p style=\"color:BF0500\">#{@error}</p>"
+else
+  page.hide "checkout-coupon"
+  page.insert_html :before, "taxes",
+  "<tr>
+        <td colspan=\"3\"><b>Discount</b>
+          <br/>#{@order.discount.name} : #{'$' if !@order.discount.percent_discount?}
+#{@order.discount.value}#{'%' if @order.discount.percent_discount?} off
+        </td>
+        <td><font color=#BF0500>-$#{@order.discount_price}</font> </td>
+      </tr>"
+  page.replace_html "total", "<b>$ #{@cart.total_price+@order.shipping_approx-@order.discount_price}</b>"
+
+end

@@ -1,0 +1,8 @@
+--- 
+cwd: /var/www/tpd/rails
+log_file: log/mongrel.log
+port: "8000"
+environment: development
+address: 127.0.0.1
+pid_file: log/mongrel.pid
+servers: 3

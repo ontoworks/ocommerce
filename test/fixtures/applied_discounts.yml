@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  order_id: 1
+  discount_type: 1
+  discount_id: 1
+  prices_off: 1.5
+
+two:
+  order_id: 1
+  discount_type: 1
+  discount_id: 1
+  prices_off: 1.5

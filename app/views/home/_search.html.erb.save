@@ -1,0 +1,7 @@
+<ul class="contacts">
+<% for product in @products do -%>
+  <li class="contact">
+    <%= product.name %><br
+  </li>
+<% end -%>
+</ul>

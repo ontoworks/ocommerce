@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<%= stylesheet_link_tag "home" %>
+<% #= stylesheet_link_tag "ufs/thirdparty/jquery/plugins/cluetip/cluetip-0.9.8/jquery.cluetip" %>
+
+<%= javascript_include_tag :defaults %>
+
+<%= javascript_include_tag "application" %>
+
+<%= javascript_include_tag "ui/components/item/behavior" %>
+<%= javascript_include_tag "ufs/thirdparty/jquery/jquery" %>
+
+<!-- tooltips -->
+  <!-- jquery.cluetip -->
+  <% #= javascript_include_tag "ufs/thirdparty/jquery/plugins/cluetip/cluetip-0.9.8/jquery.cluetip.js" %>
+  <% #= javascript_include_tag "ufs/thirdparty/jquery/plugins/cluetip/cluetip-0.9.8/jquery.dimensions.js" %>
+  <% #= javascript_include_tag "ufs/thirdparty/jquery/plugins/cluetip/cluetip-0.9.8/jquery.dimensions-1.2.js" %>
+  <% #= javascript_include_tag "ufs/thirdparty/jquery/plugins/cluetip/cluetip-0.9.8/jquery.hoverIntent.js" %>
+
+  <!-- jquery.jHelperTip -->
+  <%= javascript_include_tag "ufs/thirdparty/jquery/plugins/jhelpertip/1.0/jquery.jHelperTip.1.0.js" %>
+  <!-- min -->
+  <% #= javascript_include_tag "ufs/thirdparty/jquery/plugins/jhelpertip/1.0/jquery.jHelperTip.1.0.min.js" %>
+
+
+
+
+<title>The Printer Depot</title>
+
+<script language="javascript">
+/*$(function(){
+  $("#test").jHelperTip({
+    trigger: "click",
+    dC:"#product_info_top", 
+//    dC:"#tip1", 
+    autoClose: false, 
+    opacity: 0.9
+  });
+});*/
+</script>
+
+<script type="text/javascript">
+  jQuery.noConflict();
+
+  // .product_information
+  jQuery(document).ready(function($) {
+    $(".product_information, .product_thumb").jHelperTip({
+      urlAttr: "href",
+      source: "ajax",
+      url: "",
+      trigger: "hover",
+      //dC:"#product_info_top",
+      autoClose: false});
+
+    $("#product_info_top").click(function() {
+      this.hide();
+    }); 
+  });
+
+  function change_desc_tab(a) {
+      $($$('a.active_internal').first().id+'_box').hide();
+      $(a.id+'_box').show();
+      $$('a.active_internal').first().removeClassName('active_internal');
+      $(a.id).addClassName('active_internal');
+  }
+
+  function unselect_kit() {
+      if ($$('div.selected_kit').first()) {
+         $$('div.selected_kit').first().removeClassName('selected_kit');
+      }
+  }
+</script>
+
+</head>
+<body>
+
+<div class="content">
+
+    <%= render :partial => 'shared/header' %>
+    <%= render :partial => 'shared/promo' %>
+    <%= render :partial => 'shared/search2' %>
+    <%= render :partial => 'shared/layout' %>
+    <%= render :partial => 'shared/footer' %>
+
+
+
+</div>
+<script type="text/javascript">
+/*var visible_promo = 'top_promo1';
+var hidden_promo = 'top_promo2';
+var slide = new Fx.Slide(hidden_promo,{mode: 'horizontal'});
+
+(function() {
+   $('top_promo2').show();
+   slide.toggle();
+}).periodical(5000);
+
+new PeriodicalExecuter(function(pe) {
+    Effect.SlideDown(hidden_promo);
+    $(visible_promo).hide();
+    var temp = visible_promo;
+    visible_promo = hidden_promo;
+    hidden_promo = temp;
+}, 5);*/
+</script>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-2386934-3");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+
+</body>
+</html>

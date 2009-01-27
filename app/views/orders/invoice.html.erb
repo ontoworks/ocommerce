@@ -1,0 +1,109 @@
+<div class="content_invoice">
+    <%= image_tag "front/The Printer Depot logo.gif" %>
+    <h2>Invoice for order # <%= @order.id %> </h2>
+    <br/>
+    <table class="finish_shopping_table" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <td><b> Description </b> </td>
+                <td><b> Quantity </b> </td>
+                <td><b> Unit Price </b> </td>
+                <td><b> Price </b> </td>
+             </tr>
+        </thead>
+        <tbody>
+        <% for c in @order.order_items %>
+      <% if c.kit %>
+      <tr>
+        <td>
+          <b><%= "#{c.kit.kit_type.camelize} Kit for" %></b><br/>
+          <b><%= "#{c.kit.product.name}" %></b><br/>
+          <b><i>Includes:</i></b>
+        <% for p in c.kit.products %>
+        <br/>
+        <%= p.name %>
+        <% end %>
+        </td>
+        <td><center>
+            <b><%= c.quantity %></b>
+            </center></td>
+        <td>
+            $ <%= c.product_price %>
+          </td>
+        <td>$ <%= "#{(c.product_price*c.quantity).to_s}" %> </td>
+      </tr>
+      <% elsif c.product %>
+          <tr>
+                <td><%= c.product_name %> </td>
+                <td><center>
+                <b><%= c.quantity %></b>
+              </center></td>
+                <td><%= c.product_price %> </td>
+            <td>$ <%= "#{(c.product_price*c.quantity).to_s}" %> </td>
+          </tr>
+          <% if c.has_warranty? %>
+          <tr>
+            <td colspan="3"><%= "<b>#{c.warranty.title}</b> for #{c.product_name}" %></td>
+            <td><%= "$ #{(c.warranty.price*c.quantity).to_s}" %></td>
+          </tr>
+          <% end # END OF IF %>
+        <% end %>
+
+        <% end # END OF FORM %>
+
+
+<% if !@order.discount.nil? %>
+      <tr>
+        <td colspan="3"><b>Discount</b>
+          <br/><%= @order.discount.name  %>
+          <%= "#{'$' if !@order.discount.percent_discount?}
+#{@order.discount.value}#{'%' if @order.discount.percent_discount?} off" %>
+          </center></td>
+        <td><font color="#BF0500">-$ <%= round @order.discount_price %></font> </td>
+      </tr>
+<% end %>
+
+
+      <tr>
+        <td colspan="3"><b>Taxes</b>
+          <br/><%= @order.billing_state  %>
+          <%= state_tax(@order.billing_state) * 100%> %
+          </center></td>
+        <td>$ <%= round @order.taxes %> </td>
+      </tr>
+            <tr>
+                <td colspan="3"><b>Shipping & Handling</b>
+                <br/><%= "#{@order.carrier} : #{@order.shipping_method}"  %>
+                <% if @order.carrier =~ /Freight/ %>
+                <br/><%= "<b>Options:</b> #{Order::FREIGHT_OPTIONS[@order.freight_options||'']}"  %>
+                <br/><%= "<b>Ship To:</b> #{Order::FREIGHT_SHIP_TO[@order.freight_ship_to||'']}"  %>
+                <% end %>
+                </td>
+            <td>$ <%= @order.shipping_approx %> </td>
+          </tr>
+          <tr>
+                <td colspan="3" bgcolor="#CCCCCC"><b>TOTAL</b> </td>
+            <td><b>$ <%= @order.total %></b> </td>
+          </tr>
+        </tbody>
+      </table>
+  <h5> Ship to </h5>
+  <%= print_shipping_info(@order) %>
+  <br/>
+  <br/>
+  Email: <%= @order.user.email || "" %></br>
+  <br/>
+  <h5> Bill to </h5>
+  <%= print_billing_info(@order) %>
+  <br/>
+  <% if @order.payment_method.downcase == "credit card" %>
+  <h5> Credit card details </h5>
+  Name: <%= @order.cc_owner %><br/>
+  Number: <%= @order.cc_number %><br/>
+  Type: <%= @order.cc_type %><br/>
+  Expires: <%= @order.cc_expires %><br/>
+  CVV: <%= @order.cvvnumber %>
+  <% end %>
+</div>
+
+

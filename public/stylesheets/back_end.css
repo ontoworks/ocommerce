@@ -1,0 +1,35 @@
+table, td {
+   vertical-align: top
+}
+
+.content-layout {
+   vertical-align: top;
+}
+
+.info-form {
+   border-style:solid;
+   border-color:#99bbe8;
+   border-width:0;
+}
+
+.shipped {
+   background-color:#66FF33;
+}
+
+.cancelled {
+   background-color:#FF5A3F;
+}
+
+.active {
+   background-color:#AABBCC;
+}
+
+.draft {
+   background-color:#CCBBAA;
+   font-size: 15px;
+}
+
+.x-form-label-left {
+   margin-left: 0px;
+}
+

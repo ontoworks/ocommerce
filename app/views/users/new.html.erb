@@ -1,0 +1,31 @@
+    <!-- =======content middle=======-->
+    <div class="content_shopping_checkout">
+<%= error_messages_for :user %>
+      <h3> Please signup </h3>
+      <% form_for :user, :url => users_path, :html => { :class => 'signup', :name => 'signupform' } do |f| -%>
+        <small> Fields in bold are required </small><br />
+        <label> <b> Email </b>
+          <%= f.text_field :email, :size => 20 %>
+        </label>
+        <label> <b> Password </b>
+          <%= f.password_field :crypted_password %>
+        </label>
+        <label> <b> Confirm Password </b>
+          <%= f.password_field :crypted_password %>
+        </label>
+        <b> </b>
+        <label> <b> First name
+          </b>
+          <%= f.text_field :firstname %>
+        </label>
+        <b> </b>
+        <label> <b> Last name
+          </b>
+          <%= f.text_field :lastname %>
+        </label>
+        <!-- label>Company
+          <%= f.text_field :company %>
+        </label -->
+        <label><b>&nbsp;</b><a href="javascript:document.signupform.submit();" class="general_button"><span class="cierre_boton_checkout"></span><b>Sign up</b></a></label>
+      <% end %>
+</div>

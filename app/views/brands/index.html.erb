@@ -1,0 +1,18 @@
+<h1>Listing brands</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for brand in @brands %>
+  <tr>
+    <td><%= link_to 'Show', brand %></td>
+    <td><%= link_to 'Edit', edit_brand_path(brand) %></td>
+    <td><%= link_to 'Destroy', brand, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New brand', new_brand_path %>

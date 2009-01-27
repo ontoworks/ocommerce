@@ -1,0 +1,158 @@
+    <!-- /////////////SEARCH////////////-->
+   <!-- div class="search">
+        <div class="search_by longer"><p>Search by:</p>
+<input type="text" />
+<a href="" class="search_go"><span class="cierre_boton_checkout"></span><b>GO</b></a>
+        </div>
+    <div style="clear: both; font-size: 1px; height: 1px;"></div -->
+   <div class="search">
+        <div class="search_by longer">
+        <p>Search by:</p>
+        <% form_tag url_for(:controller => 'products', :action => 'search'), {:name => 'goform', :method => 'get'} do %>
+        <input type="text" name="query" />
+        <% end %>
+        <a href="javascript:document.goform.submit()" class="search_go">
+        <span class="cierre_boton_checkout"></span><b>GO</b></a>
+        </div>
+
+    <div style="clear: both; font-size: 1px; height: 1px;"></div>
+
+
+        <div class="search_by">
+        <div class="search_box" id="search_brand" style="display: none;">
+            <%= link_to_function "", nil, :class => "drop_up" do |page|
+                 page.hide "search_brand"
+                 page.show "search_brand_closed"
+             end %>
+            <ul>
+                <% if session[:search_by][:brand].nil? %>
+                <li>- None -</li>
+                <% else %>
+                <li><a href="/products/search_by/brand/none"><span></span>- None -</a></li>
+                <% end %>
+                <% for b in @brands %>
+                <li><a href="<%= "/products/search_by/brand/#{b.id.to_s}" %>"><span></span><%= b.name.to(25) %></a></li>
+                <% end %>
+                <!-- li><a href="/products/search_by/brand/6"><span></span>HP</a></li>
+                <li><a href="/products/search_by/brand/20"><span></span>Epson</a></li>
+                <li><a href="/products/search_by/brand/11"><span></span>Lexmark</a></li>
+                <li><a href="/products/search_by/brand/1"><span></span>IBM</a></li>
+                <li><a href="/products/search_by/brand/14"><span></span>Dell</a></li>
+                <li><a href="/products/search_by/brand/3"><span></span>Compaq</a></li>
+                <li><a href="/products/search_by/brand/3"><span></span>Brother</a></li>
+                <li><a href="/products/search_by/brand/19"><span></span>Canon</a></li>
+                <li><a href="/products/search_by/brand/8"><span></span>Samsung</a></li>
+                <li><a href="/products/search_by/brand/12"><span></span>Okidata</a></li>
+                <li><a href="/products/search_by/brand/15"><span></span>Xerox</a></li -->
+            </ul>
+            <div class="search_bottom_box"></div>
+        </div>
+
+
+        <div class="search_box" id="search_brand_closed">
+            <%= link_to_function "", nil, :class => "drop_down" do |page|
+                page.hide "search_brand_closed"
+                page.show "search_brand"
+            end %>
+            <ul>
+                <li><span></span>- Brand -</li>
+            </ul>
+            <div class="search_bottom_box"></div>
+        </div>
+        </div>
+
+
+        <div class="search_by">
+        <div class="search_box" id="search_category" style="display: none;">
+            <%= link_to_function "", nil, :class => "drop_up" do |page|
+                page.hide "search_category"
+                page.show "search_category_closed"
+            end %>
+            <ul>
+                <% if session[:search_by][:category].nil? %>
+                <li>- None -</li>
+                <% else %>
+                <li><a href="/products/search_by/category/none"><span></span>- None -</a></li>
+                <% end %>
+                <% for cat in @categories %>
+                <li><a href="<%= "/products/search_by/category/#{cat.id.to_s}" %>"><span></span><%= cat.text.to(25) %></a></li>
+                <% end %>
+            </ul>
+            <div class="search_bottom_box"></div>
+        </div>
+        <div class="search_box" id="search_category_closed">
+            <%= link_to_function "", nil, :class => "drop_down" do |page|
+                page.hide "search_category_closed"
+                page.show "search_category"
+            end %>
+            <ul>
+                <li>- Category -</li>
+            </ul>
+            <div class="search_bottom_box"></div>
+        </div>
+        </div>
+
+
+        <div class="search_by">
+        <div class="search_box" id="search_condition" style="display: none;">
+            <%= link_to_function "", nil, :class => "drop_up" do |page|
+                page.show "search_condition_closed"
+                page.hide "search_condition"
+            end %>
+            <ul>
+                <% if session[:search_by][:condition].nil? %>
+                <li>- None -</li>
+                <% else %>
+                <li><a href="/products/search_by/condition/none"><span></span>- None -</a></li>
+                <% end %>
+                <li><a href="/products/search_by/condition/New"><span></span>New</a></li>
+                <li><a href="/products/search_by/condition/Refurbished"><span></span>Refurbished</a></li>
+                <li><a href="/products/search_by/condition/Generic"><span></span>Generic</a></li>
+            </ul><div class="search_bottom_box"></div>
+        </div>
+        <div class="search_box" id="search_condition_closed">
+            <%= link_to_function "", nil, :class => "drop_down" do |page|
+                page.hide "search_condition_closed"
+                page.show "search_condition"
+            end %>
+            <ul>
+                <li>- Condition -</li>
+            </ul><div class="search_bottom_box"></div>
+        </div>
+    </div>
+
+
+        <div class="search_by">
+        <!-- p>Price:</p -->
+        <div class="search_box" id="search_price" style="display: none;">
+            <%= link_to_function "", nil, :class => "drop_up" do |page|
+                page.show "search_price_closed"
+                page.hide "search_price"
+            end %>
+            <ul>
+                <% if session[:search_by][:price].nil? %>
+                <li>- None -</li>
+                <% else %>
+                <li><a href="/products/search_by/price/none"><span></span>- None -</a></li>
+                <% end %>
+                <li><a href="/products/search_by/price/0to49"><span></span>Less than $50</a></li>
+                <li><a href="/products/search_by/price/50to99"><span></span>$50-$99</a></li>
+                <li><a href="/products/search_by/price/100to299"><span></span>$100-$299</a></li>
+                <li><a href="/products/search_by/price/300to499"><span></span>$300-$499</a></li>
+                <li><a href="/products/search_by/price/500to799"><span></span>$500-$799</a></li>
+                <li><a href="/products/search_by/price/800to999"><span></span>$800-$999</a></li>
+                <li><a href="/products/search_by/price/1000to100000"><span></span>More than $1000</a></li>
+            </ul><div class="search_bottom_box"></div>
+        </div>
+        <div class="search_box" id="search_price_closed">
+            <%= link_to_function "", nil, :class => "drop_down" do |page|
+                page.hide "search_price_closed"
+                page.show "search_price"
+            end %>
+            <ul>
+                <li>- Price -</li>
+            </ul><div class="search_bottom_box"></div>
+        </div>
+    </div>
+  </div>
+    <!-- ///////////// END OF SEARCH////////////-->

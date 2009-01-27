@@ -1,0 +1,50 @@
+<%
+  @p2 = Product.find(3223)
+  @p1 = Product.find(3190)
+%>
+    <div class="promo">
+    </div>
+    <div class="promo">
+      <div id="top_promo1" class="border_top"><div></div></div>
+      <div id="top_promo2" class="border_top_warranty" style="display:none;"><div></div></div>
+
+        <div class="center_promo">
+                <a href="" class="left_arrow" style="display:none;"></a>
+                <div class="promo_box">
+                <%= image_tag "front/9000MFP_promo.gif" %>
+                <div class="promo_description">
+                <p class="brand">HP LJ 9000MFP</p>
+<!-- a href="" class="product_information"></a -->
+                    <p class="product">Laser Printer</p>
+                    <p class="only">ONLY</p>
+                    <p class="prize">$1499.<span class="big">99</span></p>
+                    <p class="before">Before:<span>$1599.99</span></p>
+                    <a href="<%= @p2.url %>" class="button_promo"><span class="cierre_boton_promo"></span><b>Buy Now !</b></a>
+                </div>
+            </div>
+            <div class="division_promo"></div>
+            <a href="" class="right_arrow" style="display:none;"></a>
+            <div class="promo_box">
+                <%= image_tag "front/C4251A_promo.gif" %>
+                <div class="promo_description">
+                        <p class="brand">HP LJ 4050DN</p><!-- a href="" class="product_information"></a -->
+                    <p class="product">Laser Printer</p>
+                    <p class="only">ONLY</p>
+                    <p class="prize">$149.<span>99</span></p>
+                    <p class="before">Before:<span>$249.99</span></p>
+                    <a href="<%= @p1.url %>" class="button_promo"><span class="cierre_boton_promo"></span><b>Buy Now !</b></a>
+                </div>
+            </div>
+        </div>
+        <div class="border_bottom">
+        </div>
+        <div class="promo_menu" style="display:none;">
+                <a href="" class="active"><b></b>1&nbsp;&nbsp;&nbsp;2</a>
+                <a href="">3&nbsp;&nbsp;&nbsp;4</a>
+                <a href="">5&nbsp;&nbsp;&nbsp;6</a>
+            <p>|</p>
+            <a href="" class="pause"></a>
+                <a href="" class="stop"></a>
+                <span class="menu_border_bottom"></span>
+        </div>
+    </div>

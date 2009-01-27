@@ -1,0 +1,45 @@
+<h1>New coupon</h1>
+
+<%= error_messages_for :coupon %>
+
+<% form_for(Coupon.new) do |f| %>
+
+    <b>Coupon Name</b><br /> 
+    <%= f.text_field :name %>
+    <br />
+
+    <b>Code</b><br /> (you can change this value)
+    <%= f.text_field :code, :value => Coupon.generate_new_code %>
+    <br />
+
+    <b>Start date</b><br /> (when will the coupon start?)
+    <%= f.date_select :date_up %>
+    <br />
+
+    <b>End date </b><br /> (when will the coupon end?)
+    <%= f.date_select :date_down %>
+    <br />
+
+    Is this a price or a percentage based discount?<br />
+    <b>Price</b> <%= f.radio_button :discount_type, "price" %><br />
+    <b>Percentage</b> <%= f.radio_button :discount_type, "percentage" %><br /><br />
+    <b>Value</b>     <%= f.text_field :value %>
+<br />(you can use a percentage or a value)<br />
+    Examples: <br />
+    Percentage 15 (15% off) <br />
+    Price 49.99 ( $49.99 off)<br />
+    <br />
+    
+    <b>Number of uses</b> (how many times can this coupon be used?)<br />
+    <%= f.text_field :use_times, :size => 30%>
+    <br />
+
+    <b>Price Range</b> (leave empty if this coupon can be applied to all orders)<br />
+    Min: <%= f.text_field :order_total_low %><br />
+    Max: <%= f.text_field :order_total_up %><br />
+
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', coupons_path %>

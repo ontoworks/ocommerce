@@ -1,0 +1,14 @@
+<h2>The Printer Depot</h2>
+Everything for your imaging needs.
+<br /><br />
+Hello <%= @order.user.firstname %>,<br/>
+We're pleased to inform you that your products have been shipped!
+<br /><br />
+<b>Order Number</b>: <%= @order.id %><br />
+<b>Tracking code(s):</b> <%= @order.tracking_code %><br/>
+<b>Carrier:</b> <%= @order.carrier %><br/>
+<b>Shipping Method:</b> <%= @order.carrier %><br/>
+<br/><b>
+<a href="http://www.theprinterdepot.net">The Printer Depot [www.theprinterdepot.net]</a>
+</b>
+

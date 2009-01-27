@@ -1,0 +1,12 @@
+<h1>Editing discount</h1>
+
+<%= error_messages_for :discount %>
+
+<% form_for(@discount) do |f| %>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @discount %> |
+<%= link_to 'Back', discounts_path %>

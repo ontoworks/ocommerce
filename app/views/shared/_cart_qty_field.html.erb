@@ -1,0 +1,3 @@
+<input id="qty_field_<%= @product.id.to_s %>" type="text" value="<%= @qty.to_s %>"/>
+<% params = "'id=#{@product.id.to_s}&qty='" %>
+<%= observe_field 'qty_field_'+@product.id.to_s, :url => {:controller => 'cart', :action => :update_qty}, :with =>  params+"+value" %>

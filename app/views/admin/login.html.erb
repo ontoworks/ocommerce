@@ -1,0 +1,29 @@
+<div class="content_shopping_checkout" align="center">
+  <h3> Please login </h3>
+
+  <% form_tag session_path, {:name => 'loginform', :class => 'login' } do -%>
+
+  <label>
+    <b for="email"> Email </b>
+    <%= text_field_tag 'email' %>
+  </label><br /><br />
+
+  <label>
+    <b for="password"> Password </b>
+    <%= password_field_tag 'password' %>
+  </label><br /> <br />
+
+  <label>
+    <b for="remember_me"> Remember me: </b>
+    <%= check_box_tag 'remember_me' %>
+  </label><br /><br />
+
+  <label>
+    <b>&nbsp;</b>
+<%= submit_tag "Login" %>
+  </label>
+<% end %>                                                                     
+
+</div>
+
+

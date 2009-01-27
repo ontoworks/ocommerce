@@ -1,0 +1,8 @@
+<% if @image %>
+<div class="image">
+  <%= image_tag "products/"+@kit.image+".jpg" %>
+</div>
+<% else %>
+No image available.<br/>
+Please upload an image.
+<% end %>

@@ -1,0 +1,12 @@
+<h1>Editing brand</h1>
+
+<%= error_messages_for :brand %>
+
+<% form_for(@brand) do |f| %>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @brand %> |
+<%= link_to 'Back', brands_path %>

@@ -1,0 +1,15 @@
+## esto debe ir en controlador cart, no home
+if @qty == 1
+  page.insert_html :bottom, 'cart_table', :partial => 'shared/cart_row'
+  page.replace_html 'cart_total', '$'+@cart.total_price.to_s
+else
+  page.replace_html 'cart_qty_'+@product.id.to_s, :partial => 'shared/cart_qty_field'
+#    '<!-- p>'+@qty.to_s+'</p -->'
+  page.replace_html 'cart_total', '$'+@cart.total_price.to_s
+end 
+
+if @cart.cart_items.length == 1 && @qty == 1
+  page.hide 'empty_cart'
+  page.show 'cart_head'
+  page.show 'checkout_btn_div'
+end

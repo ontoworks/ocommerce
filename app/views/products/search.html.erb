@@ -1,0 +1,52 @@
+<div class="content_middle">
+<h3>Your search for "<%= @query %>"</h3>
+<div id=pagination>
+</div>
+<!-- div class="pages">
+    <a href="" class="prev_page">&nbsp;</a>
+    <a href="" class="active_page">1</a>
+    <a href="">2</a>
+    <a href="">3</a>
+    <a href="">4</a>
+    <a href="">5</a>
+    <a href="">6</a>
+    <a href="">7</a>
+    <a href="" class="next_page">&nbsp;</a>
+ </div -->
+<% j = 1 %>
+<% @products.each do |product| %>
+       <% j.remainder(4) == 0 ? last_product = true : last_product = false %>
+            <div class="catalog">
+                <div class="each_product <%= last_product ? ' last_product' : '' %>">
+
+                    <div class="image_product">
+                      <a href="<%= product.url %>">
+                    <% #= image_tag("products/#{product.model}_thumb.jpg") %>
+                      <img class="product_thumb" href="ui/product/quickview/<%= product.id %>" 
+			   src="<%= "http://theprinterdepot.net/images/#{product.image_url}" %>" />
+                      </a>
+                    </div>
+                    <!-- a href="" class="product_information"></a -->
+                    <div class="price">$ <%= product.price(usergroup) %></div>
+                    <!-- a href="" class="shopping_catalog"></a -->
+                    <%= link_to_remote "", :url => { :controller => 'home', :action => 'add_to_cart', :id => product.id }, :html => { :class => 'shopping_catalog' } %>
+                    <div class="brand"><%= product.name.downcase().titleize() %></div>
+                    <!-- div class="product">Laser Printer</div>
+                    <a href="" class="see_all">See all Laser Prints</a -->
+                </div>
+            </div>
+<% j += 1 %>
+<% end %>
+<!-- div class="pages">
+    <a href="" class="prev_page">&nbsp;</a>
+    <a href="" class="active_page">1</a>
+    <a href="">2</a>
+    <a href="">3</a>
+    <a href="">4</a>
+    <a href="">5</a>
+    <a href="">6</a>
+    <a href="">7</a>
+    <a href="" class="next_page">&nbsp;</a>
+ </div -->
+<%= will_paginate @products, :class => "pages", :prev_label => "<<", :next_label => ">>" %>
+</div>

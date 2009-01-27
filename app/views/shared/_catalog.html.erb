@@ -1,0 +1,49 @@
+<% for i in 0..1 %>
+  <% for j in 0..3 %>
+       <% product = @products[i*4+j] %>
+       <% j == 3 ? last_product = true : last_product = false %>
+            <div class="catalog">
+                <div class="each_product <%= last_product ? ' last_product' : '' %>">
+                    <div class="image_product">
+                      <a href="<%= "products/#{product.id.to_s}-#{product.model}-#{product.name.downcase().gsub(/\s/, '_')}" %>">
+                      <% #= image_tag("products/#{product.model}_thumb.jpg") %>
+                      <!-- img class="product_thumb" href="ui/product/quickview/<%= product.id %>" 
+			   src="<%= "http://theprinterdepot.net/images/products/#{product.model}_thumb.jpg" %>" / -->
+                      <img class="product_thumb" href="ui/product/quickview/<%= product.id %>" 
+			   src="<%= "http://theprinterdepot.net/images/#{product.image_url}" %>" />
+                      </a>
+                    </div>
+                    <!-- a href="ui/product/quickview/<% #= product.id %>" class="product_information"></a -->
+                    <% #= link_to_function "", "show_info(#{product.id})", :class => "product_information" %>
+                    <div class="price">$ <%= product.price(usergroup) %></div>
+                    <!-- a href="" class="shopping_catalog"></a -->
+                    <%= link_to_remote "", :url => { :controller => 'home', :action => 'add_to_cart', :id => product.id },
+                    :html => { :class => 'shopping_catalog' } %>
+                    <div class="brand"><%= product.name.downcase().titleize() %></div>
+                    <!-- div class="product">Laser Printer</div>
+                    <a href="" class="see_all">See all Laser Prints</a -->
+                </div>
+            </div>
+  <% end %>
+<% end %>
+<div class="product_info" id="product_info_top" <%= hide?("product_info_top") %>>
+  <div style="border-bottom: none;">
+    <h5>HP LJ 2420DN</h5>
+    <p>You can have a Laser Printer, Copier, Scanner, and Fax Machine with the LaserJet 4345mfp series from HP.  Maximize productivity with this all in one machine that can print, copy, scan, and fax all of your documents.  Print speeds of up to 45 ppm and resolutions of 1200 x 1200 dpi ensure quality print jobs come out very crisp and fast.
+You can have a Laser Printer, Copier, Scanner, and Fax Machine with the LaserJet 4345mfp series from HP.  Maximize productivity with this all in one machine that can print, copy, scan, and fax all of your documents.  Print speeds of up to 45 ppm and resolutions of 1200 x 1200 dpi ensure quality print jobs come out very crisp and fast.
+You can have a Laser Printer, Copier, Scanner, and Fax Machine with the LaserJet 4345mfp series from HP.  Maximize productivity with this all in one machine that can print, copy, scan, and fax all of your documents.  Print speeds of up to 45 ppm and resolutions of 1200 x 1200 dpi ensure quality print jobs come out very crisp and fast.
+</p>
+    <h6>Features</h6>
+  </div>
+    <div>
+       <ul>
+           <li>30 PPM Print Speed</li>
+           <li>1200 x 1200 DPI Resolution</li>
+           <li>16 MB RAM (Expandable to 384 MB RAM)</li>
+           <li>Connects Via Parallel and USB</li>
+           <li>Environments: Windows 3.1, 95, 98, 2000,</li>
+       </ul>
+       <a href="" class="detail_button">Detailed page</a>
+       <a href="" class="large_img">Large Image</a>
+    </div>
+</div>

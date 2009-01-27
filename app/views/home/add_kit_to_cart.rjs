@@ -1,0 +1,27 @@
+## esto debe ir en controlador cart, no home
+if @kit_in_cart.nil?
+  if @product_in_cart.nil?
+    page.insert_html :bottom, 'cart_table', { :partial => 'shared/product_cart_row', :locals => { :i => @product_item } }
+  end
+  page.insert_html :bottom, 'cart_table', { :partial => 'shared/kit_item_cart_row', :locals => { :i => @kit_item} }
+  if @cart.cart_items.length == 2 && @qty == 1
+    page.hide 'empty_cart'
+    page.show 'cart_head'
+    page.show 'checkout_btn_div'
+  end
+else
+  # if changed kit_type remove kit from cart
+  if @kit_in_cart.kit != @kit
+    page.remove "#{@product_in_cart.product.id}-kit_cart_row"
+    page.remove "#{@product_in_cart.product.id}-kit_products_cart_row"
+    page.insert_html :bottom, 'cart_table', { :partial => 'shared/kit_item_cart_row', :locals => { :i => @kit_item} }
+  end
+
+  ## Another kit may be added to cart iif the new quantity matches
+  ## the product's
+  if @product_item.quantity.to_i >= @kit_item.quantity.to_i
+    page.replace_html "cart_kit_qty_#{@kit.product.id.to_s}", "<p>#{@kit_item.quantity}</p>"
+  end
+end
+page.replace_html 'cart_total', '$'+@cart.total_price.to_s
+

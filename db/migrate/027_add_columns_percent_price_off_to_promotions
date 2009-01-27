@@ -1,0 +1,16 @@
+class AddColumnsPercentPriceOffToPromotions < ActiveRecord::Migration
+  def self.up
+    add_column :promotions, :percent, :integer
+    add_column :promotions, :price_off, :integer
+    add_column :promotions, :percent, :integer
+    add_column :promotions, :price_off, :integer
+    remove_column :promotions, :percent
+    remove_column :promotions, :price_off
+
+  end
+
+  def self.down
+    remove_column :promotions, :percent
+    remove_column :promotions, :price_off
+  end
+end

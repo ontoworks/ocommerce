@@ -1,0 +1,56 @@
+<tr id="cart_row_<%= @kit.product.id.to_s %>">
+  <td><a href="<%= @kit.product.url %>"><%= @kit.product.name %></a>
+    <br />
+    <p>$<%= @kit.product.price(usergroup) %>
+<%= link_to_remote "Remove", :url => {:controller => "cart", :action => "products", :id => @kit.product.id },
+:method => :delete %>
+</p>
+
+<% if @item %>
+  <% if !@item.nil? %>
+  <%= warranty?(@item) %>
+  <% end %>
+<% end %>
+</td>
+
+<td id="<%= 'cart_qty_'+@kit.product.id.to_s %>"
+class="qty"><input id="qty_field_<%= @kit.product.id.to_s %>" type="text" value="1"/>
+<% params = "'id="+@kit.product.id.to_s+"&qty='" %>
+<%= observe_field 'qty_field_'+@kit.product.id.to_s, :url => {:controller => 'cart', :action => :update_qty},
+     :with =>  params+"+value" %>
+</td></tr>
+
+
+
+<tr id="<%= "#{@kit.id}-kit_cart_row" %>">
+  <td><%= "#{@kit.kit_type.camelize} Kit" %>
+    <br />
+    <a href="<%= @kit.product.url %>"><b><%= @kit.product.name %></b></a>
+    <p>$<%= @kit.price %>
+<%= link_to_remote "Remove", :url => {:controller => "cart", :action => "remove_kit", :id => @kit.id },
+:method => :post %>
+</p>
+
+</td>
+
+<td id="<%= 'cart_qty_'+@kit.id.to_s %>"
+class="qty"><input id="qty_field_<%= @kit.id.to_s %>" type="text" value="1"/>
+<% params = "'id="+@kit.id.to_s+"&qty='" %>
+<%= observe_field 'qty_field_'+@kit.id.to_s, :url => {:controller => 'cart', :action => :update_qty},
+     :with =>  params+"+value" %>
+</td>
+</tr>
+<!-- tr>
+  <td colspan="2">
+  </td>
+</tr -->
+<tr id="<%= "#{@kit.id}-kit_products_cart_row" %>">
+  <td colspan="2">
+    <div id="<%= "#{@kit.id}-kit_products" %>" class="cart_kit_products_container">
+<% for p in @kit.products %>
+    <div id="<%= "#{@kit.id}" %>" class="cart_kit_product"><a href="<%= p.url %>"><%= p.name %></a></div>
+    <!--br/-->
+<% end %>
+    </div>
+  </td>
+</tr>

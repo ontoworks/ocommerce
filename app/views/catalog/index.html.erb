@@ -1,0 +1,19 @@
+<table cellpadding="3">
+  <% for i in 0..3 %>
+  <tr>
+      <% for j in 0..3 %>
+        <% product = @products[i*4+j] %>
+
+		<% if !product.nil?%>
+    <td width="150" height="150">
+
+      <br/>
+      <b>$ <%= product.price %></b>
+      <br/>
+      <%= button_to "Add to Cart" , :controller => "home", :action => "add_to_cart", :id => product %>
+    </td>
+      <% end %>
+  </tr>
+  <% end %>
+<% end %>
+</table>

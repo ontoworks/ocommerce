@@ -1,0 +1,17 @@
+<% for p in @products %>
+<div class="kit_product">
+  <div class="content_image_cross">
+    <%= image_tag("products/#{p.model}_thumb.jpg") %>
+  </div>
+  <div class="content_cross_link">
+    <a href="<%= p.url %>" class="cross_link">
+      <%= p.name.upcase.to(70) %>
+    </a>
+  </div>
+  <div class="kit_product_price">
+    <div class="price">$<%= p.price(usergroup) %></div>
+    <% #= link_to_remote "", :url => { :controller => 'home', :action => 'add_to_cart', :id => 123 }, :html => { :class => 'shopping_catalog' } %>
+  </div>
+  <p class="model">Model: <b><%= p.model.upcase %></b><br />In stock</p>
+</div>
+<% end %>

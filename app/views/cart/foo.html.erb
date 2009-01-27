@@ -1,0 +1,8 @@
+<%= @a %>
+<%= paypal_form_tag %>
+     <%= paypal_setup "Test", Money.us_dollar(9000), "demo@demoaccount.com"%>  
+
+     Please press here to pay $90US using paypal. <br/>
+     <%= submit_tag "Go to paypal >>" %>
+
+</form>

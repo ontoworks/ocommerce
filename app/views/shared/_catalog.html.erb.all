@@ -1,0 +1,74 @@
+            <div class="catalog">
+                <div class="each_product">
+                	
+                	<div class="image_product"><img src="images/front/printer1.jpg" width="76" height="82"/></div><a href="" class="product_information"></a>
+                    <div class="price">$830.99</div>
+                    <a href="" class="shopping_catalog"></a>
+                    <div class="brand">HP Color LaserJet CP4005n</div>
+                    <div class="product">Laser Printer</div>
+                    <a href="" class="see_all">See all Laser Prints</a>
+                </div> 
+                <div class="each_product">
+                	
+                	<div class="image_product"><img src="images/front/printer2.jpg" width="76" height="82"/></div><a href="" class="product_information"></a>
+                    <div class="price">$830.99</div>
+                    <a href="" class="shopping_catalog"></a>
+                    <div class="brand">HP LJ 2420DN</div>
+                    <div class="product">Laser Printer</div>
+                    <a href="" class="see_all">See all Laser Prints</a>
+                </div>  
+                <div class="each_product">
+                	
+                	<div class="image_product"><img src="images/front/printer1.jpg" width="76" height="82"/></div><a href="" class="product_information"></a>
+                    <div class="price">$830.99</div>
+                    <a href="" class="shopping_catalog"></a>
+                    <div class="brand">HP Color LaserJet CP4005n</div>
+                    <div class="product">Laser Printer</div>
+                    <a href="" class="see_all">See all Laser Prints</a>
+                </div>        
+                <div class="each_product last_product">
+                	
+                	<div class="image_product"><img src="images/front/printer3.jpg" width="76" height="84"/></div><a href="" class="product_information"></a>
+                    <div class="price">$830.99</div>
+                    <a href="" class="shopping_catalog"></a>
+                    <div class="brand">HP LJ 2420DN</div>
+                    <div class="product">Laser Printer</div>
+                    <a href="" class="see_all">See all Laser Prints</a>
+                </div>     
+                <div class="each_product">
+                	
+                	<div class="image_product"><img src="images/front/printer1.jpg" width="76" height="82"/></div><a href="" class="product_information"></a>
+                    <div class="price">$830.99</div>
+                    <a href="" class="shopping_catalog"></a>
+                    <div class="brand">HP Color LaserJet CP4005n</div>
+                    <div class="product">Laser Printer</div>
+                    <a href="" class="see_all">See all Laser Prints</a>
+                </div> 
+                <div class="each_product">
+                	
+                	<div class="image_product"><img src="images/front/printer2.jpg" width="76" height="82"/></div><a href="" class="product_information"></a>
+                    <div class="price">$830.99</div>
+                    <a href="" class="shopping_catalog"></a>
+                    <div class="brand">HP LJ 2420DN</div>
+                    <div class="product">Laser Printer</div>
+                    <a href="" class="see_all">See all Laser Prints</a>
+                </div>  
+                <div class="each_product">
+                	
+                	<div class="image_product"><img src="images/front/printer1.jpg" width="76" height="82"/></div><a href="" class="product_information"></a>
+                    <div class="price">$830.99</div>
+                    <a href="" class="shopping_catalog"></a>
+                    <div class="brand">HP Color LaserJet CP4005n</div>
+                    <div class="product">Laser Printer</div>
+                    <a href="" class="see_all">See all Laser Prints</a>
+                </div>        
+                <div class="each_product last_product">
+                	
+                	<div class="image_product"><img src="images/front/printer3.jpg" width="76" height="84"/></div><a href="" class="product_information"></a>
+                    <div class="price">$830.99</div>
+                    <a href="" class="shopping_catalog"></a>
+                    <div class="brand">HP LJ 2420DN</div>
+                    <div class="product">Laser Printer</div>
+                    <a href="" class="see_all">See all Laser Prints</a>
+                </div>        
+            </div>

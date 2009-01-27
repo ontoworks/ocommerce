@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Fixed Scrolling</title>
+
+<style type="text/css">
+/*margin and padding on body element
+  can introduce errors in determining
+  element position and are not recommended;
+  we turn them off as a foundation for YUI
+  CSS treatments. */
+body {
+        margin:5;
+        padding:0;
+}
+</style>
+
+<link rel="stylesheet" type="text/css" href="javascripts/yui/fonts/fonts-min.css?_yuiversion=2.4.1" />
+<link rel="stylesheet" type="text/css" href="javascripts/yui/datatable/assets/skins/sam/datatable.css?_yuiversion=2.4.1" />
+<script type="text/javascript" src="javascripts/yui/yahoo-dom-event/yahoo-dom-event.js?_yuiversion=2.4.1"></script>
+<script type="text/javascript" src="javascripts/yui/element/element-beta.js?_yuiversion=2.4.1"></script>
+
+<script type="text/javascript" src="javascripts/yui/datasource/datasource-beta.js?_yuiversion=2.4.1"></script>
+<script type="text/javascript" src="javascripts/yui/datatable/datatable-beta.js?_yuiversion=2.4.1"></script>
+
+<!-- OPTIONAL: Connection (required only if using XHR) -->
+<script type="text/javascript" src="javascripts/yui/connection/connection-min.js"></script>
+
+<script type="text/javascript" src="javascripts/yui/json/json-beta-min.js"></script> 
+
+<!--begin custom header content for this example-->
+<style type="text/css">
+#fixedscrolling {
+    height:35em;
+}
+
+/* customized css for scrolling */
+.yui-dt-scrollable  {
+    width:80em; /* SET OVERALL WIDTH HERE for ie (make sure columns add up to this total) */
+    height:50em; /* SET HEIGHT HERE for ie */
+}
+.yui-dt-scrollbody {
+    height:30em; /* SET HEIGHT HERE for non-ie */
+    *height:auto; /* for ie */
+}
+.yui-dt-scrollable  thead {
+    background:#696969; /*dark gray*/ /* ie needs a background color */
+    color:#fff;
+}
+
+/* SET WIDTHS FOR EACH TH TO HELP ALIGN COLUMNS */
+/* IF ALL COLS CAN BE SAME WIDTH USE THIS:
+.yui-dt-scrollable th, .yui-dt-scrollbody td {
+    width:20em;
+}*/
+/* OTHERWISE SET EACH COL WIDTH EXPLICITLY:*/
+.yui-dt-col-image {
+    width:10em;
+}
+.yui-dt-col-name {
+    width:10em;
+}
+.yui-dt-col-description {
+    width:30em;
+}
+.yui-dt-col-model {
+    width:10em;
+}
+.yui-dt-col-condition {
+    width:5em;
+}
+.yui-dt-col-status {
+    width:5em;
+}
+.yui-dt-col-manufacturer {
+    width:10em;
+}
+
+</style>
+
+<!--end custom header content for this example-->
+
+</head>
+
+<body class=" yui-skin-sam">
+<div id="dt-pag-nav">
+    <span id="prevLink"><</span> Showing items
+    <span id="startIndex">0</span> - <span id="endIndex">24</span>
+    <span id="ofTotal"></span> <span id="nextLink">></span>
+</div>
+
+<div id="fixedscrolling"></div>
+
+<script type="text/javascript" src="assets/js/data.js"></script>
+<script type="text/javascript">
+YAHOO.util.Event.addListener(window, "load", function() {
+    YAHOO.example.Scrolling = new function() {
+        var myColumnDefs = [
+            {key:"image", label:"Thumbnail"},
+            {key:"name", label:"Name"},
+            {key:"description", label:"Description"},
+            {key:"model", label:"Model"},
+            {key:"condition", label:"Condition"},
+            {key:"status", label:"Status"},
+            {key:"manufacturer-id", label:"Manufacturer"}
+            ];
+
+
+        // DataSource from a remote source:
+        this.myDataSource = new YAHOO.util.DataSource("http://bach:3000/products.xml?");
+        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_XML;
+
+
+        this.myDataSource.responseSchema = {
+            resultNode: "product",
+            fields: ["condition","created-at", "description", "height", "id", "image", "length", "manufacturer-id", "model", "name", "status", "times-ordered", "times-viewed", "updated-at", "weight", "width"]
+        };
+
+        // DataTable instance
+        var oConfigs = {
+            initialRequest: "offset=0&limit=40" // Initial values
+        };
+
+        this.myDataTable = new YAHOO.widget.DataTable("fixedscrolling", myColumnDefs, this.myDataSource, oConfigs );
+
+        // Enables inline cell editing
+//      this.myDataTable.subscribe("cellClickEvent", this.myDataTable.onEventShowCellEditor);
+
+
+    };
+
+
+});
+
+
+</script>
+
+<!--END SOURCE CODE FOR EXAMPLE =============================== -->
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Admin feeds</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td><%= link_to "Pricegrabber", :controller => 'feeds', :action => :pricegrabber %></td>
+      </tr>
+      <tr>
+        <td>Generate download link</td>
+      </tr>
+      <tr>
+        <td>Upload via FTP</td>
+      </tr>
+      <tr id="feeds_wait">
+        <td><%= image_tag "front/waiting_ajax.gif" %> Generating file</td>
+      </tr>
+    </table>
+  </body>
+</html>

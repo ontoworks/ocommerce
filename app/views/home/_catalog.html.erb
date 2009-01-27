@@ -1,0 +1,23 @@
+<% for i in 0..1 %>
+  <% for j in 0..3 %>
+       <% product = @products[i*4+j] %>
+       <% j == 3 ? last_product = true : last_product = false %>
+            <div class="catalog">
+                <div class="each_product <%= last_product ? ' last_product' : '' %>">
+asdfasdfsd                	
+                    <div class="image_product">
+                      <!-- img src="images/front/printer2.jpg" width="76" height="82"/ -->
+                      <a href="<%= 'products/'+product.id.to_s+'-'+product.name.downcase().gsub(/\s/, '_') %>">
+                      <%= image_tag("products/"+product.image+".thumb_75x75.jpg", :width => 76, :height => 82) %>
+                      </a>   
+                    </div>
+                    <a href="" class="product_information"></a>
+                    <div class="price">$ <%= product.price %></div>
+                    <a href="" class="shopping_catalog"></a>
+                    <div class="brand"><%= product.name.downcase().titleize() %></div>
+                    <div class="product">Laser Printer</div>
+                    <a href="" class="see_all">See all Laser Prints</a>
+                </div> 
+            </div> 
+  <% end %>
+<% end %>

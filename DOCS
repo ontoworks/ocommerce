@@ -1,0 +1,18 @@
+INSTALAR:
+
+- gem install paypal
+- gem install money
+- gem install google4r-checkout
+- gem install shipping
+- gem install shipping-calc 
+- gem install will_paginate
+- gem install builder
+- gem install rmagick -v=1.15.10
+- apt-get install libmagick9-dev
+- ./script/plugin install acts_as_tree
+- ./script/plugin install restful_authentication
+- ./script/plugin install http://calendardateselect.googlecode.com/svn/tags/calendar_date_select/
+./script/plugin install exception_notification
+
+./script/plugin http://dev.rubyonrails.org/svn/rails/plugins/ssl_requirement/
+

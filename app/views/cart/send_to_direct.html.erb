@@ -1,0 +1,13 @@
+<div class="content_middle">
+<%= error_messages_for "order" %>
+<% form_for @order, :url => {:action => "direct_transaction"} do |f| %>
+<h2>Credit Card</h2>
+Name: <%= f.text_field :cc_owner %><br />
+Number: <%= f.text_field :cc_number %><br />
+Type: <%= f.select :cc_type, Order::CC_TYPES, :prompt => "Select a company"%><br />
+Expiration Date (<small>month/year</small>): <%= f.text_field :cc_expires %><br />
+CVV (<small>Verification Code</small>): <%= f.text_field :cvvnumber %><br />
+<%= f.hidden_field :id, :value => @order.id %>
+<%= submit_tag "Submit" %>
+<% end %>
+</div>

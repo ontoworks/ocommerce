@@ -1,0 +1,24 @@
+<tr id="<%= "#{i.kit.product.id}-kit_cart_row" %>">
+  <td><%= "#{i.kit.kit_type.camelize} Kit" %>
+    <br />
+    <a href="<%= i.kit.product.url %>"><b><%= i.kit.product.name %></b></a>
+    <p>$<%= i.kit.price %>
+<%= link_to_remote "Remove", :url => {:controller => "cart", :action => "remove_kit", :id => i.kit.id },
+:method => :post %>
+</p>
+
+</td>
+
+<td id="<%= "cart_kit_qty_#{i.kit.product.id.to_s}" %>" class="qty">
+<p><%= i.quantity %></p>
+</td>
+</tr>
+<tr id="<%= "#{i.kit.product.id}-kit_products_cart_row" %>">
+  <td colspan="2">
+    <div id="<%= "#{i.kit.id}-kit_products" %>" class="cart_kit_products_container">
+<% for p in i.kit.products %>
+    <div id="<%= "#{i.kit.id}" %>" class="cart_kit_product"><a href="<%= p.url %>"><%= p.name %></a></div>
+<% end %>
+    </div>
+  </td>
+</tr>

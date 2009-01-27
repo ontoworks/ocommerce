@@ -1,0 +1,124 @@
+            <!-- =======content middle=======-->
+        <div class="content_middle">
+                <!-- a href="" class="receive_banner"><%= image_tag "front/receive_DVD.jpg" %></a -->
+                <h3 class="description"><%= @product.name.upcase %><br /><span>[<%= @product.model %>] - <%= @product.condition %></span></h3>
+            <!-- a href="" class="add_cart_internal">Add to cart</a -->
+            <%= link_to_remote "Add to cart", :url => { :controller => 'home', :action => 'add_to_cart', :id => @product.id }, :html => { :class => 'add_cart_internal' } %>
+
+
+
+            <div class="menu_internal">
+                <!-- a href="" id="main_info_tab">Main Info</a -->
+                <%= link_to_function "Main Info", "change_desc_tab(this)", :id => "main_info", :class => "active_internal" %>
+<% if !@product_desc.nil? %>
+                <%= link_to_function "Specs", "change_desc_tab(this)", :id => "specs" %>
+                <%= link_to_function "Features", "change_desc_tab(this)", :id => "features" %>
+                <%= link_to_function "Includes", "change_desc_tab(this)", :id => "includes" %>
+                <%= link_to_function "Warranty", "change_desc_tab(this)", :id => "warranty", :class => "warranty" %>
+                <%= link_to_function "Overview", "change_desc_tab(this)", :id => "overview" %>
+<% end %>
+            </div>
+
+            <!-- /// MAIN_INFO /// -->
+            <div id="main_info_box" class="content_description">
+                <div class="content_image_description">
+                    <div>
+                    </div>
+                    <%= image_tag(@product.image_url) %>
+                    <% #= image_tag("products/#{@product.model}_thumb.jpg") %>
+                    <% #= image_tag("products/"+@product.image, :width => 76, :height => 82) %>
+                    <div class="price">$<%= @product.price(usergroup) %></div>
+                    <!-- a href="" class="large_image">Large Image</a -->
+<% #= link_to_remote "Buy", :url => { :controller => 'home', :action => 'add_to_cart', :id => @product.id }, :html => { :class => 'add_cart_maininfo' } %>
+                </div>
+                <div class="content_text_description">
+                    <h5>Summary</h5>
+                <p><%= @product.description %></p>
+                </div>
+            </div>
+<% if !@product_desc.nil? %>
+
+            <!-- /// SPECS /// -->
+            <div id="specs_box" class="content_description" style="display: none;">
+                <div class="content_text_description">
+                    <h5>Specs</h5>
+                <p><%= @product_desc.specs %></p>
+                </div>
+            </div>
+
+            <!-- /// FEATURES /// -->
+            <div id="features_box" class="content_description" style="display: none;">
+                <div class="content_text_description">
+                    <h5>Features</h5>
+                <p><%= @product_desc.features %></p>
+                </div>
+            </div>
+
+            <!-- /// INCLUDES /// -->
+            <div id="includes_box" class="content_description" style="display: none;">
+                <div class="content_text_description">
+                    <h5>Includes</h5>
+                <p><%= @product_desc.includes %></p>
+                </div>
+            </div>
+
+            <!-- /// WARRANTY /// -->
+            <div id="warranty_box" class="content_description" style="display: none;">
+                <div class="content_text_description">
+                    <h5>Warranty</h5>
+                <p><%= @product_desc.warranty %></p>
+                </div>
+            </div>
+
+            <!-- /// INCLUDES /// -->
+            <div id="includes_box" class="content_description" style="display: none;">
+                <div class="content_text_description">
+                    <h5>Includes</h5>
+                <p><%= @product_desc.includes %></p>
+                </div>
+            </div>
+
+            <!-- /// OVERVIEW /// -->
+            <div id="overview_box" class="content_description" style="display: none;">
+                <div class="content_text_description">
+                    <h5>Overview</h5>
+                <p><%= @product_desc.overview %></p>
+                </div>
+            </div>
+            <a href="" class="expand_description"></a>
+<% end %>
+
+<% if !@product.warranties.empty? %>
+<div class="all_xwarranty">
+  <h4>Extendend Warranties<br/>
+    <span>Please add product to cart to pick a warranty</span>
+  </h4>
+  <div class="content_main_xwarranty">
+    <div class="xwarranty">
+<%= select "warranty", "id", @product.warranties.collect {|w| [w.title+" - $"+w.price.to_s, w.id]},
+       {:include_blank => "--- Select an extended warranty ---"}, {:id => "xwarranty"}
+ %>
+     </div>
+  </div>
+</div>
+<% params = "'product_id="+@product.id.to_s+"&id='" %>
+<%= observe_field 'xwarranty', :url => {:controller => 'cart', :action => :add_warranty},
+     :with =>  params+"+value" %>
+<% end %>
+
+            <!-- /// KITS /// -->
+            <% if @product.has_kits? %>
+            <%= render :partial => 'kits' %>
+            <% end %>
+
+            <!-- /// XSELLS /// -->
+            <% if @product.has_cross_sells? %>
+            <%= render :partial => 'xsells' %>
+            <% end %>
+
+            <!-- /// XSELLS /// -->
+            <% if @product.has_cross_sellers? %>
+            <%= render :partial => 'xsellers' %>
+            <% end %>
+        </div>
+            <!-- =======end of content middle=======-->

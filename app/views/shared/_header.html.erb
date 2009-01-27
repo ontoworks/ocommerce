@@ -1,0 +1,32 @@
+    <div class="header">
+            <div>
+                <a href="/" class="logo"><%= image_tag "front/The Printer Depot logo.gif" %></a>
+                <% if !logged_in? %>
+                <% form_tag session_path  do %>
+                        <p>Email:</p><input type="text" name="email" />
+                <p>Password:</p><input type="password" name="password" />
+                <!-- input class="login" type="submit" value="Log in"/ -->
+                <%= submit_tag "Log in", :class => "login" %>
+                <% end %>
+               <a href="/session/new" class="create_new_account">Create a New Account</a>
+               <a href="/users/password_forgotten" class="create_new_account">Forgot password?</a>
+                <% else %>
+                <p>You're logged in as <%= "#{current_user.firstname} #{current_user.lastname}" %>
+                <% #= submit_tag "Log out", :class => "login" %></p>&nbsp;
+                [ <%= link_to "Log out", "/sessions/destroy" %> |
+                  <%= link_to "My orders", "/users/#{current_user.id}/orders" %>
+                ]
+                <% end %>
+
+                <div class="menu">
+                <div class="menu_left_border"></div>
+                <div class="menu_right_border"></div>
+                        <ul>
+                        <li><a href="/customer_support">CONTACT US</a>|</li>
+                        <li><a href="/customer_support/faq">FAQ</a>|</li>
+                    <li><a href="/customer_support">CUSTOMER SERVICE</a>|</li>
+                    <li><a href="/customer_support">OUR COMPANY</a></li>
+                </ul>
+                </div>
+            </div>
+    </div>

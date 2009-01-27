@@ -1,0 +1,2 @@
+page.visual_effect :morph, 'kits_box', { :style => "{height: '500px'}" }
+page.insert_html :bottom, 'kits_products_container', :partial => 'kits/kit_products'

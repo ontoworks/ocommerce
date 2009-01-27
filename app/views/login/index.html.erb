@@ -1,0 +1,5 @@
+<% form_tag :action => 'login' do %>
+Username: <%= text_field 'user', 'email' %>
+Password: <%= password_field 'user', 'password' %>
+<%= submit_tag 'Login' %>
+<% end %>

@@ -1,0 +1,284 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+background:#FFFFFF none repeat scroll 0%;
+color:#3E3E3E;
+font-family:verdana,"Lucida Grande",arial,helvetica,sans-serif;
+font-size:14px;
+line-height:160%;
+margin:0pt;
+}
+#container {
+background:#FFFFFF none repeat scroll 0%;
+margin:0pt auto;
+width:100%;
+}
+#top1 {
+background:#99CCFF none repeat scroll 0%;
+height:35px;
+padding-top:2px;
+}
+#top1padding {
+margin:0pt auto;
+width:700px;
+}
+#top2 {
+background:#1F2D74 none repeat scroll 0%;
+color:white;
+font-size:28px;
+height:40px;
+line-height:24px;
+padding-top:20px;
+}
+#top2padding {
+margin:0pt auto;
+width:550px;
+}
+#top3 {
+background-color:#1F2D74;
+height:27px;
+}
+#top3padding {
+margin:0pt auto;
+width:550px;
+}
+#logo {
+float:left;
+padding-right:15px;
+}
+#logo img {
+border:medium none;
+}
+#topnav {
+float:right;
+padding-top:16px;
+}
+#topnav ul {
+background-color:#99CCFF;
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+margin:0pt;
+padding:0pt;
+}
+#topnav li {
+background-color:#99CCFF;
+color:#1F2D74;
+display:inline;
+font-size:14px;
+height:17px;
+padding-left:15px;
+padding-right:15px;
+white-space:nowrap;
+}
+#topnav a {
+color:#1F2D74;
+text-decoration:none;
+}
+#topnav a:hover {
+text-decoration:underline;
+}
+#navtabs {
+background:#1F2D74 none repeat scroll 0%;
+font-family:verdana,arial,sans-serif;
+font-size:12px;
+line-height:100%;
+padding-left:30px;
+}
+#navtabs ul {
+background-color:#1F2D74;
+color:#1F2D74;
+float:left;
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+margin:0pt;
+padding:0pt;
+}
+#navtabs li {
+background-color:#1F2D74;
+border-right:1px solid #1F2D74;
+color:white;
+display:block;
+float:left;
+font-weight:bold;
+height:27px;
+padding-left:15px;
+padding-right:15px;
+text-align:center;
+white-space:nowrap;
+}
+#navtabs a {
+color:white;
+text-decoration:none;
+}
+#navtabs a:hover {
+text-decoration:underline;
+}
+
+// Santiago
+#navtabs2 {
+background:#99CCFF none repeat scroll 0%;
+font-family:verdana,arial,sans-serif;
+font-size:12px;
+line-height:100%;
+padding-left:30px;
+}
+#navtabs2 ul {
+background-color:#99CCFF;
+color:#99CCFF;
+float:left;
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+margin:0pt;
+padding:0pt;
+}
+#navtabs2 li {
+background-color:#99CCFF;
+border-right:1px solid #99CCFF;
+color:white;
+display:block;
+float:left;
+font-weight:bold;
+height:27px;
+padding-left:15px;
+padding-right:15px;
+text-align:center;
+white-space:nowrap;
+}
+#navtabs2 a {
+color:black;
+text-decoration:none;
+}
+#navtabs2 a:hover {
+text-decoration:underline;
+}
+
+
+
+
+
+#main {
+clear:both;
+font-size:14px;
+padding-bottom:10px;
+}
+#mainpadding {
+margin:0pt auto;
+width:550px;
+}
+#main a {
+background-color:#FFFFFF;
+color:#FF0000;
+text-decoration:none;
+}
+#main h2 {
+color:#000000;
+font-size:20px;
+line-height:24px;
+margin-bottom:0.3em;
+}
+#main h3 {
+color:#000000;
+font-size:18px;
+line-height:24px;
+margin-bottom:0.3em;
+}
+#main h1, h2, h3 {
+font-family:georgia,times;
+font-weight:normal;
+}
+#main hr {
+background-color:#000000;
+border:0pt none;
+height:1px;
+}
+#main h2 a {
+background:#FFFFFF none repeat scroll 0%;
+color:#FF0000;
+text-decoration:none;
+}
+#main h3 a {
+background:#FFFFCC none repeat scroll 0%;
+color:#FF0000;
+text-decoration:none;
+}
+#plans {
+}
+#plans table {
+width:100%;
+}
+#plans th {
+background:#333333 none repeat scroll 0%;
+border-bottom:1px solid #CCCCCC;
+color:#FFFFFF;
+padding:5px;
+text-align:center;
+}
+#plans td {
+border-bottom:1px solid #CCCCCC;
+font-family:verdana,"Lucida Grande",arial,helvetica,sans-serif;
+padding:5px;
+text-align:center;
+}
+#plans td a {
+background-color:#FFFFCC;
+}
+#plans tr {
+}
+#included {
+margin-bottom:2.5em;
+}
+#included ul {
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+padding-left:10px;
+}
+#included ul li {
+background:transparent url(/images/check.gif) no-repeat scroll 2px 0.3em;
+padding-left:20px;
+}
+#checks {
+}
+#checks ul {
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+padding-left:10px;
+}
+#checks ul li {
+background:transparent url(/images/greencheck-bullet.gif) no-repeat scroll 2px 0.3em;
+padding-left:20px;
+}
+#mailer {
+}
+#mailer input {
+border:1px solid #666666;
+font-size:1.5em;
+padding:2px;
+}
+#mailer submit, select {
+font-size:1.2em;
+}
+#mailer textarea {
+border:1px solid #666666;
+font-size:1.2em;
+padding:4px;
+}
+#footer {
+background-color:#A4D767;
+color:#535353;
+font-size:12px;
+height:85px;
+margin-bottom:50px;
+margin-top:10px;
+padding-top:5px;
+text-align:center;
+}
+#footer a {
+color:#666666;
+text-decoration:none;
+}

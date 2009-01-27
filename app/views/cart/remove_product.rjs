@@ -1,0 +1,14 @@
+page.remove 'cart_row_'+@id.to_s
+if @remove_kit
+  page.remove "#{@remove_kit.product.id}-kit_cart_row"
+  page.remove "#{@remove_kit.product.id}-kit_products_cart_row"
+end
+if @cart.cart_items.count < 1
+  page.replace_html 'cart_total', '$0'
+  page.show 'empty_cart'
+  page.hide 'cart_head'
+  page.hide 'checkout_btn_div'
+else
+  page.replace_html 'cart_total', '$'+@cart.total_price.to_s
+end
+

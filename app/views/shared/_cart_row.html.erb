@@ -1,0 +1,22 @@
+<tr id="cart_row_<%= @product.id.to_s %>">
+  <td><a href="<%= @product.url %>"><%= @product.name %></a>
+    <br />
+    <p>$<%= @product.price(usergroup) %>
+<%= link_to_remote "Remove", :url => {:controller => "cart", :action => "products", :id => @product.id },
+:method => :delete %>
+</p>
+
+<% if @item %>
+  <% if !@item.nil? %>
+  <%= warranty?(@item) %>
+  <% end %>
+<% end %>
+<%= "<p>Free Shipping</p>" if @product.free_shipping %>
+</td>
+
+<td id="<%= 'cart_qty_'+@product.id.to_s %>"
+class="qty"><input id="qty_field_<%= @product.id.to_s %>" type="text" value="1"/>
+<% params = "'id="+@product.id.to_s+"&qty='" %>
+<%= observe_field 'qty_field_'+@product.id.to_s, :url => {:controller => 'cart', :action => :update_qty},
+     :with =>  params+"+value" %>
+</td></tr>

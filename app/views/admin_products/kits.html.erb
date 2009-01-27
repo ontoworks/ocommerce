@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Products</title>
+
+    <%= stylesheet_link_tag "tpd", :media => "all" %>
+    <%= stylesheet_link_tag "ext-all.css" %>
+    <%= stylesheet_link_tag "examples.css" %>
+    <%= stylesheet_link_tag "grid-examples.css" %>
+
+    <style type="text/css">
+        body .x-panel {
+            margin-bottom:20px;
+        }
+        .icon-grid {
+            background-image:url(/images/icons/grid.png) !important;
+        }
+        #button-grid .x-panel-body {
+            border:1px solid #99bbe8;
+            border-top:0 none;
+        }
+        .add {
+            background-image:url(/images/icons/add.gif) !important;
+        }
+        .option {
+            background-image:url(/images/plugin.gif) !important;
+        }
+        .remove {
+            background-image:url(/images/icons/delete.gif) !important;
+        }
+        .save {
+            background-image:url(/images/icons/save.gif) !important;
+        }
+    </style>
+
+    <script type="text/javascript">
+      var product_id = <%= params[:id] %>;
+      var product_name = "<%= @product.name %>";
+    </script>
+
+    <%= javascript_include_tag "ext/adapter/ext/ext-base" %>
+    <%= javascript_include_tag "ext/ext-all" %>
+    <%= javascript_include_tag "tpd/SearchField" %>
+    <%= javascript_include_tag "tpd/UploadFile" %>
+    <%= javascript_include_tag "tpd/kits" %>
+</head>
+<body>
+
+<link rel="stylesheet" type="text/css" href="javascripts/ext/examples/lib.css" />
+<!-- div id="lib-bar" class="x-toolbar" style="border-width:0 1px 1px">
+<div id="lib-bar-inner"> <span>Theme:</span>&#160;&#160;<select id="exttheme"><option value="default">Ext Blue</option><option value="gray">Gray Theme</option></select></div></div -->
+<div id="kits"></div>
+</body>
+</html>

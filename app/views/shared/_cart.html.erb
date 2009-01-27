@@ -1,0 +1,43 @@
+                <!--========== shopping cart =============-->
+                <div class="shopping_cart">
+                <span class="shopping_cart_border"></span>
+                <h4>Shopping Cart</h4>
+                <div class="show">
+                <div class="content_shopping">
+                    <table id="cart_table" cellpadding="0" cellspacing="0">
+                        <thead id="cart_head" <%= hide?("cart_head") %> >
+                                <th>
+                                <td><p>Product</p></td>
+                                <td class="qty"><p>Qty</p></td>
+                                </th>
+                         </thead>
+                    <% if cart_exists? || !cart_empty? %>
+                         <tbody>
+                         <% for i in @cart.cart_items %>
+                         <% if i.product %>
+                         <%= render :partial => 'shared/product_cart_row', :locals => {:i => i} %>
+                         <% elsif i.kit %>
+                         <%= render :partial => 'shared/kit_item_cart_row', :locals => {:i => i} %>
+                         <% end %>
+                         <% end %>
+                     <% end %>
+                         <tr id="empty_cart" <%= hide?("empty_cart") %> ><td><p>No items in cart</p></td></tr>
+                     </table>
+                     <div class="total">
+                        <p>TOTAL</p><span id="cart_total">$<%= @cart.nil? ? 0 : @cart.total_price %></span>
+                     </div>
+                </div>
+                <!-- div class="chekcout">
+                         <a href="" class="button_checkout"><span class="cierre_boton_checkout"></span><b>Checkout</b></a>
+                </div -->
+
+                <div class="chekcout" id="checkout_btn_div" <%= hide?("checkout_btn_div") %>>
+                  <%= link_to '<span class="cierre_boton_checkout"></span><b>Checkout</b>', step1_path, :class => "button_checkout" %>
+                </div>
+
+                </div>
+                <!-- div class="expand_shopping">
+                        <a href=""></a>
+                </div -->
+            </div>
+            <!-- end of shopping -->

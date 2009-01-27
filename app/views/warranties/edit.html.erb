@@ -1,0 +1,12 @@
+<h1>Editing warranty</h1>
+
+<%= error_messages_for :warranty %>
+
+<% form_for(@warranty) do |f| %>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @warranty %> |
+<%= link_to 'Back', warranties_path %>

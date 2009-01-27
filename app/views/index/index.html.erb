@@ -1,0 +1,36 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Products</title>
+
+<%= stylesheet_link_tag "tpd", :media => "all" %>
+
+    <link rel="stylesheet" type="text/css" href="javascripts/ext/resources/css/ext-all.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/tpd.css" />
+
+    <script type="text/javascript" src="javascripts/ext/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="javascripts/ext/ext-all.js"></script>
+    <script type="text/javascript" src="javascripts/tpd/ContentView.js"></script>
+    <script type="text/javascript" src="javascripts/tpd/index.js"></script>
+
+</head>
+<body>
+
+<!-- you must define the select box here, as the custom editor for the 'Light' column will require it -->
+<select name="status" id="status" style="display: none;">
+	<option value="Y">Active</option>
+	<option value="N">Inactive</option>
+	<option value="D">Draft</option>
+</select>
+
+<select name="condition" id="condition" style="display: none;">
+	<option value="New">New</option>
+	<option value="Refurbished">Refurbished</option>
+</select>
+
+<link rel="stylesheet" type="text/css" href="javascripts/ext/examples/lib.css" />
+<!-- div id="lib-bar" class="x-toolbar" style="border-width:0 1px 1px">
+<div id="lib-bar-inner"> <span>Theme:</span>&#160;&#160;<select id="exttheme"><option value="default">Ext Blue</option><option value="gray">Gray Theme</option></select></div></div -->
+<div id="editor-grid"></div>
+</body>
+</html>

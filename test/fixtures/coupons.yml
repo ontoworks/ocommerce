@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  code: MyString
+  date_up: 2008-05-23
+  date_down: 2008-05-23
+  use_times: 1
+  order_total_up: 1
+  order_total_low: 1
+
+two:
+  name: MyString
+  code: MyString
+  date_up: 2008-05-23
+  date_down: 2008-05-23
+  use_times: 1
+  order_total_up: 1
+  order_total_low: 1

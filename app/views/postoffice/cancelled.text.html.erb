@@ -1,0 +1,10 @@
+<h2>The Printer Depot</h2>
+Everything for your imaging needs.
+<br /><br />
+Hello <%= @order.user.firstname %>,<br/>
+We're sorry to inform you that your order #<%= @order.id %> was cancelled for the following reason:
+<br /><br />
+<b><%= @order.comments %><br />
+<br/><b>
+<a href="http://www.theprinterdepot.net">The Printer Depot [www.theprinterdepot.net]</a>
+</b>

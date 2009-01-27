@@ -1,0 +1,2 @@
+  page.replace 'cart_row_'+@product.id.to_s, :partial => 'shared/cart_row'
+  page.replace_html 'cart_total', '$'+@cart.total_price.to_s

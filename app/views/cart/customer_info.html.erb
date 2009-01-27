@@ -1,0 +1,119 @@
+    <!-- =======content middle=======-->
+    <div class="content_shopping_checkout">
+
+      <!-- h2>Check Out Proccess</h2 -->
+      <div class="steps">
+        <p class="one deactive">Login</p>
+        <p class="two active">Customer Information<span></span></p>
+        <p class="three">Shipping Method</p>
+        <p class="four">Payment Information</p>
+        <p class="five">Confirmation</p>
+      </div>
+      <br />
+      <h3>Customer Information</h3>
+
+
+<!-- div class="content_middle" -->
+
+<%= error_messages_for 'order' %>
+
+<h5>Delivery Information</h5>
+<% form_for @order, :url => step3_path do |f|%>
+        <table>
+          <tbody>
+            <tr>
+              <td class="text_form"> Name: </td>
+              <td>
+<%= f.text_field :delivery_name%>
+              </td>
+            </tr>
+            <tr>
+              <td class="text_form"> Company: </td>
+              <td>
+<%= f.text_field :delivery_company%>
+              </td>
+            </tr>
+            <tr>
+              <td class="text_form"> Address: </td>
+    <td><%= f.text_field :delivery_street_address%></td>
+<%= f.hidden_field :delivery_suburb%>
+            </tr>
+            <tr>
+              <td class="text_form"> Telephone: </td>
+    <td><%= f.text_field :telephone %></td>
+            </tr>
+            <!-- tr>
+              <td class="text_form"> Suburb: </td>
+    <td><% #= f.text_field :delivery_suburb%></td>
+            </tr -->
+            <tr>
+              <td class="text_form"> City: </td>
+    <td><%= f.text_field :delivery_city%></td>
+            </tr>
+            <tr>
+              <td class="text_form"> Zip Code: </td>
+    <td><%= f.text_field :delivery_postcode, :value => "10001" %></td>
+            </tr>
+            <tr>
+              <td class="text_form"> State: </td>
+    <td><%= f.select :delivery_state, $us_states.keys.sort, :prompt => "Select a state" %></td>
+            </tr>
+            <tr>
+              <td class="text_form"> Country: </td>
+    <td><%= f.select :delivery_country, $countries.values.sort, :prompt => "Select a country" %></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5> Billing Information </h5>
+        <div class="clear">
+<%= link_to_function '<span class="cierre_boton_checkout"></span><b>Same as Shipping information</b>', js_fill_info, :class => 'general_button' %>
+
+<!-- a href="" class="general_button"><span class="cierre_boton_checkout"></span><b>Same as Shipping information</b></a -->
+
+</div>
+        <table>
+          <tbody>
+            <tr>
+              <td class="text_form"> Name: </td>
+    <td><%= f.text_field :billing_name%></td>
+            </tr>
+            <tr>
+              <td class="text_form"> Company: </td>
+    <td><%= f.text_field :billing_company%></td>
+            </tr>
+            <tr>
+              <td class="text_form"> Address: </td>
+    <td><%= f.text_field :billing_street_address%></td>
+    <%= f.hidden_field :billing_suburb%>
+            </tr>
+            <!-- tr>
+              <td class="text_form"> Suburb: </td>
+    <td><% # = f.text_field :billing_suburb%></td>
+            </tr -->
+            <tr>
+              <td class="text_form"> City: </td>
+    <td><%= f.text_field :billing_city%></td>
+            </tr>
+            <tr>
+              <td class="text_form"> Zip Code: </td>
+    <td><%= f.text_field :billing_postcode, :value => "10001" %></td>
+            </tr>
+            <tr>
+              <td class="text_form"> State: </td>
+    <td><%= f.select :billing_state, $us_states.keys.sort, :prompt => "Select a state" %></td>
+            </tr>
+            <tr>
+              <td class="text_form"> Country </td>
+    <td><%= f.select :billing_country, $countries.values.sort, :prompt => "Select a country" %></td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <br>
+<%= submit_tag "Continue", :class => 'continue' %>
+        <!-- input name="commit" value="Continue" type="submit" class="continue" -->
+<%= link_to "Back", { :controller => "home", :action => "index" }, { :class => 'back' } %>
+
+        <!-- a href="" class="back">Back</a -->
+<% end%>
+</div>

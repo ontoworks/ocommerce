@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<%= javascript_include_tag :defaults %>
+<%= stylesheet_link_tag "home" %>
+<title>The Printer Depot</title>
+
+<script type="text/javascript" src="/javascripts/creditcard.js"></script>
+<script type="text/javascript">
+  function change_desc_tab(a) {
+      $($$('a.active_internal').first().id+'_box').hide();
+      $(a.id+'_box').show();
+      $$('a.active_internal').first().removeClassName('active_internal');
+      $(a.id).addClassName('active_internal');
+  }
+
+  function testCreditCard() {
+      cardNo = document.getElementById('order_cc_number').value;
+      cardType = document.getElementById('order_cc_type').value;
+
+
+      cardOwner = document.getElementById('order_cc_owner').value;
+
+      cardExpires = document.getElementById('order_cc_expires').value;
+      cvvNumber = document.getElementById('order_cvvnumber').value;
+
+      return checkCreditCard (cardNo,cardType,cardOwner,cardExpires,cvvNumber);
+  }
+
+  function submit_cc() {
+      if (testCreditCard()) {
+          document.creditform.submit();
+      } else {
+          alert (ccErrors[ccErrorNo]);
+      }
+  }
+</script>
+
+</head>
+<body>
+
+<div class="content">
+
+    <%= render :partial => 'shared/header' %>
+
+    <%= render :partial => 'shared/promo' if show_component_for_uri?("promo", @uri) %>
+
+    <% # = render :partial => 'shared/search2' %>
+
+    <%= render :partial => 'shared/cart_layout' %>
+    <%= render :partial => 'shared/footer' %>
+
+
+</div>
+
+
+
+<script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript">
+  var pageTracker = _gat._getTracker("UA-2386934-3");
+  pageTracker._initData();
+  pageTracker._trackPageview();
+
+<% if order_finished? %>
+  pageTracker._addTrans(
+    "<%= @order.id %>",                                     // Order ID
+    "<%= current_user.usergroup %>",                            // Affiliation
+    "<%= @order.totalize_items %>",                                    // Total
+    "<%= @order.taxes %>",                                       // Tax
+    "<%= @order.shipping_approx %>",                                          // Shipping
+    "<%= @order.billing_city %>",                                 // City
+    "<%= @order.billing_state %>",                               // State
+    "<%= @order.billing_country %>"                                       // Country
+  );
+
+<% for i in @order.order_items %>
+<% if i.kit %>
+  pageTracker._addItem(
+    "<%= @order.id %>",                                     // Order ID
+    "<%= "#{i.kit.kit_type.camelize} Kit for #{i.product_name}" %>",                                  // Product Name
+    "<%= i.kit.price %>",                                    // Price
+    "<%= i.quantity %>"                                         // Quantity
+  );
+<% else %>
+  pageTracker._addItem(
+    "<%= @order.id %>",                                     // Order ID
+    "<%= i.product_model %>",                                     // SKU
+    "<%= i.product_name %>",                                  // Product Name
+    "<%= i.product.category.text %>",                               // Category
+    "<%= i.product_price %>",                                    // Price
+    "<%= i.quantity %>"                                         // Quantity
+  );
+<% end %>
+<% end %>
+pageTracker._trackTrans();
+<% end %>
+</script>
+</body>
+</html>

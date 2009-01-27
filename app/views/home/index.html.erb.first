@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="javascripts/ext/resources/css/ext-all.css"/>
+    <script type="text/javascript" src="javascripts/ext/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="javascripts/ext/ext-all.js"></script>
+    <script type="text/javascript" src="javascripts/tpd/home.js"></script>
+
+    <title>Welcome to The Printer Depot</title>
+  </head>
+  <body>
+    <div id="catalog"></div>
+  </body>
+</html>

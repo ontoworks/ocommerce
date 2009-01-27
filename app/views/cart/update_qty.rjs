@@ -1,0 +1,11 @@
+if @cart.cart_items.count > 0
+  page.replace_html 'cart_total', '$'+@cart.total_price.to_s
+else
+  page.replace_html 'cart_total', '$0'
+  page.show 'empty_cart'
+  page.hide 'checkout_btn_div'
+end
+
+if @qty.to_i == 0
+  page.remove 'cart_row_'+@id.to_s
+end

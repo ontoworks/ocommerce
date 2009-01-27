@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <%= javascript_include_tag :defaults %>
+  <%= calendar_date_select_includes "silver" %>
+
+  <script type="text/javascript">
+    var i = 1;
+    function add_price_row() {
+       i++;
+
+       var html = '<tr><td align="right">';
+       html += '<input id="promotion_quantity_'+i+'" type="text" size="3" name="promotion[quantity_'+i+']"/>';
+       html += " items</td><td>$ ";
+       html += '<input id="promotion_price_'+i+'" type="text" size="5" name="promotion[price_'+i+']"/>';
+       html += "</td></tr>";
+
+       new Insertion.Before("add_price_button", html);
+    }
+  </script>
+
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Admin Promotions</title>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'tpd' %>
+</head>
+<body>
+
+<p style="color: green"><%= flash[:notice] %></p>
+
+<table width="1000" border="1" cellpadding="5">
+  <tr>
+    <td width="200">Settings</td>
+    <td width="200"><%= link_to "Products", {:controller => "admin_products"} %></td>
+    <td width="200" bgcolor="#DDDDDD">Promotions</td>
+    <td width="200">Content</td>
+    <td width="200">Reports</td>
+  </tr>
+</table>
+<br/>
+<%= yield  %>
+
+</body>
+</html>

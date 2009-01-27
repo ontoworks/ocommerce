@@ -1,0 +1,12 @@
+Name: <%= @coupon.name %><br />
+Code: <%= @coupon.code %><br />
+Date Up: <%= @coupon.date_up %><br />
+Date Down: <%= @coupon.date_down %><br />
+Use Times: <%= @coupon.use_times %><br />
+Order Total Up: <%= @coupon.order_total_up %><br />
+Order Total Down: <%= @coupon.order_total_low %><br />
+Type: <%= @coupon.discount_type %><br />
+
+
+<%= link_to 'Edit', edit_coupon_path(@coupon) %> |
+<%= link_to 'Back', coupons_path %>

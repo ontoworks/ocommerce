@@ -1,0 +1,81 @@
+<% total_price = price_after_taxes(@order, @cart) + @order.shipping_approx - (@order.discount_price||0) %>
+<div class="content_shopping_checkout">
+  <h2>Proceed to </h2>
+  <%= image_tag "front/paypal_payment.jpg" %>
+  <br/>
+  <table class="finish_shopping_table" cellpadding="0" cellspacing="0">
+    <thead>
+      <tr>
+        <td><b> Name </b> </td>
+        <td><b> Quantity </b> </td>
+        <td><b> Price </b> </td>
+      </tr>
+    </thead>
+    <tbody>
+      <% for c in @order.order_items %>
+      <tr>
+        <td>
+          <% if c.kit %>
+          <%= "#{c.kit.kit_type.camelize} Kit for #{c.kit.product.name}" %>
+          <% else %>
+          <%= c.product_name %>
+          <% end %>
+        </td>
+          <td><center>
+              <b><%= c.quantity %></b>
+          </center></td>
+        <td>$ <%= "#{(c.product_price*c.quantity).to_s}" %> </td>
+      </tr>
+      <% if c.has_warranty? %>
+      <tr>
+        <td colspan="2"><%= "<b>#{c.warranty.title}</b> for #{c.product.name}" %></td>
+        <td><%= "$ #{(c.warranty.price*c.quantity).to_s}" %></td>
+      </tr>
+      <% end # END OF IF %>
+      <% end # END OF FORM %>
+
+      <% if !@order.discount.nil? %>
+      <tr>
+        <td colspan=\"2\"><b>Discount</b>
+          <br/><%= "#{@order.discount.name} : #{'$' if !@order.discount.percent_discount?}
+#{@order.discount.value}#{'%' if @order.discount.percent_discount?} off" %>
+        </td>
+        <td><font color=#BF0500>-$<%= "#{@order.discount_price}" %></font> </td>
+      </tr>
+      <% end %>
+
+
+      <tr>
+        <td><b>Taxes</b>
+          <br/><%= @order.billing_state  %>
+        </td>
+        <td><center><%= state_tax(@order.billing_state) * 100%> %
+        </center></td>
+        <td>$ <%= round @order.taxes %> </td>
+      </tr>
+      <tr>
+        <td colspan="2"><b>Shipping & Handling</b>
+          <br/><%= "#{@order.carrier} : #{@order.shipping_method}"  %>
+        </td>
+        <td>$ <%= @order.shipping_approx %> </td>
+      </tr>
+      <tr>
+        <td colspan="2" bgcolor="#CCCCCC"><b>TOTAL</b> </td>
+        <td><b>$ <%= total_price %></b> </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= form_tag Paypal::Notification.ipn_url %>
+
+  <% # TODO CAMBIAR EMAIL POR EL REAL %>
+  <%= paypal_setup @order.id, Money.new(total_price * 100, "USD"), "theprinterdepot@yahoo.com",
+  :notify_url =>  url_for(:only_path => false, :action => :confirm_order),
+  :return => url_for(:only_path => false, :action => :thank_you),
+  :item_name  => "The Printer Depot" %>
+
+  <%= submit_tag "Confirm", :class => 'continue' %>
+</form>
+</div>
+
+

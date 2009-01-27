@@ -1,0 +1,12 @@
+new_height = 192+(@products.length*100).to_i
+
+page.call 'unselect_kit'
+
+page.call 'Element.addClassName', "#{@kit.kit_type}_kit", "selected_kit"
+#page.replace_html 'see_all_container', :partial => 'kits/collapse_products'
+page.replace_html 'kits_products_inner_container', ""
+page.insert_html :bottom, 'kits_products_inner_container', :partial => 'kits/kit_products'
+page.visual_effect :slide_down, 'kits_products_container'
+page.visual_effect :morph, 'kits_box', { :style => "{height: '#{new_height}px'}" }
+
+

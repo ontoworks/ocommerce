@@ -1,0 +1,48 @@
+<% current_category=nil %>
+<% for x in @product.cross_sell_products.find(:all, :conditions => ["status=?", "Y"], :order => :category_id) %>
+  <% if x.category != current_category %>
+    <% if current_category != nil %>
+  </div> <% # content_main_cross %>
+</div> <% # all_cross %>
+    <% end %>
+    <% current_category = x.category %>
+<div class="all_cross">
+  <h4><%= x.category.text %> for
+    <br />
+    <span><%= @product.name %></span></h4>
+  <div class="content_main_cross">
+    <div class="cross">
+      <div class="content_image_cross">
+        <%= image_tag("products/#{x.model}_thumb.jpg") %>
+      </div>
+      <div class="content_cross_link">
+        <a href="<%= x.url %>" class="cross_link">
+          <%= "#{x.name.upcase} | #{x.category.text}" %>
+        </a>
+      </div>
+      <div class="content_price_shop_cross">
+        <div class="price">$<%= x.price(usergroup) %></div>
+        <%= link_to_remote "", :url => { :controller => 'home', :action => 'add_to_cart', :id => x.id }, :html => { :class => 'shopping_catalog' } %>
+      </div>
+      <p class="model">Model: <b><%= x.model %></b><br />In stock</p>
+    </div>
+  <% else %>
+    <div class="cross">
+      <div class="content_image_cross">
+        <% #= image_tag("products/#{x.model}_thumb.jpg") %>
+        <%= image_tag(x.image_url) %>
+      </div>
+      <div class="content_cross_link">
+        <a href="<%= x.url %>" class="cross_link">
+          <%= "#{x.name.upcase}" %>
+        </a>
+      </div>
+      <div class="content_price_shop_cross">
+        <div class="price">$<%= x.price(usergroup) %></div>
+        <%= link_to_remote "", :url => { :controller => 'home', :action => 'add_to_cart', :id => x.id }, :html => { :class => 'shopping_catalog' } %>
+      </div>
+      <p class="model">Model: <b><%= x.model %></b><br />In stock</p>
+    </div>
+  <% end %>
+<% end %>
+</div></div>

@@ -1,0 +1,26 @@
+<br/>
+    <%= stylesheet_link_tag "ext-all" %>
+    <%= stylesheet_link_tag "feed-viewer" %>
+    <%= stylesheet_link_tag "back_end" %>
+    <%= stylesheet_link_tag "ext/ux/datepickerplus" %>
+
+    <%= javascript_include_tag "ext/adapter/ext/ext-base" %>
+    <%= javascript_include_tag "ext/ext-all" %>
+    <%= javascript_include_tag "ext/ux/ext.ux.datepickerplus-min.js" %>
+
+    <%= javascript_include_tag "tpd/UserSearchField" %>
+    <%= javascript_include_tag "tpd/admin/orders/FeedViewer" %>
+    <%= javascript_include_tag "tpd/admin/orders/FeedGrid" %>
+    <%= javascript_include_tag "tpd/admin/orders/OrderGrid" %>
+    <%= javascript_include_tag "tpd/admin/orders/MainPanel" %>
+    <%= javascript_include_tag "tpd/admin/orders/FeedPanel" %>
+
+<div id="header"><div style="float:right;margin:5px;" class="x-small-editor"></div></div>
+<div id="entry-div"></div>
+<select name="status" id="status" style="display: none;">
+        <option value="PENDING">Pending</option>
+        <option value="SHIPPED">Shipped</option>
+        <option value="CANCELLED">Cancelled</option>
+</select>
+</body>
+</html>

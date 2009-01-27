@@ -1,0 +1,76 @@
+<div class="product_infoo" id="product_info_top" 
+     style="background:transparent url(/images/front/product_info.gif) no-repeat scroll 0%;
+	    background-position:top;
+	    display:block;
+	    height:auto;
+	    min-height:237px;
+	    padding:20px 10px 10px 30px;
+	    width:195px;
+	    z-index:100000;">
+  <div style="background-color:#FFFFFF;
+	      border-bottom:1px solid #666666;
+	      border-bottom: none;
+	      border-left:1px solid #666666;
+	      border-right:1px solid #666666;
+	      float:left;
+	      margin-left:-17px;
+	      padding:0pt 10px 10px 15px;
+	      width:195px;">
+    <h5 style="color:#333333;
+	       font-family:Arial,Helvetica,sans-serif;
+	       font-size:14px;
+	       font-size-adjust:none;
+	       font-stretch:normal;
+	       font-style:normal;
+	       font-variant:normal;
+	       font-weight:bold;
+	       line-height:normal;
+	       margin:10px 0pt;
+	       padding:0px;"><%= @product.name %></h5>
+    <!-- p style="color:#666666;
+	      font-family:Arial,Helvetica,sans-serif;
+	      font-size:10px;
+	      font-size-adjust:none;
+	      font-stretch:normal;
+	      font-style:normal;
+	      font-variant:normal;
+	      font-weight:normal;
+	      line-height:normal;
+	      margin:0px;
+	      padding:0px;"><%= !@product.description.nil? ? @product.description.gsub(/<\/?[^>]*>/, "") : "" %></p -->
+    <h6 style="color:black;
+	       font-size:12px;
+	       margin:10px 0pt;
+	       padding:0px;">Features</h6>
+    </div>
+    <div style="background-color:#FFFFFF;
+		border-bottom:1px solid #666666;
+		border-left:1px solid #666666;
+		border-right:1px solid #666666;
+		float:left;
+		margin-left:-17px;
+		padding:0pt 10px 10px 15px;
+		width:195px;
+		">
+      <div class="info_tooltip">
+	<%= @product.product_description.features %>
+      </div>
+      <ul style="border-bottom:1px solid #999999;
+		 list-style-image:none;
+		 list-style-position:outside;
+		 list-style-type:none;
+		 margin:0pt 0pt 10px;
+		 padding:0pt 0pt 10px;">
+      </ul>
+      <!-- a href="" style="width: 80px;
+	   text-decoration: underline;
+			float: left;
+			display: block;
+			font: bold 11px Arial, Helvetica, sans-serif;
+			color: #1A2E37;
+			text-align: right;
+			background:  no-repeat url(/images/front/detail_page_product_info.gif);
+			padding-left: 10px;">Detailed page</a>
+      <a href="" class="large_img">Large Image</a -->
+    </div>
+</div>

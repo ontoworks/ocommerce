@@ -1,0 +1,20 @@
+<html>
+  <% if @cart.empty? || @cart.nil? %>
+  <tr>
+    <td>Cart is empty</td>
+  </tr>
+  <% else %>
+  <% for item in @cart.cart_items %>
+  <tr>
+    <td><li><%= item.product.name %> $<%= item.unit_price %></li></td>
+    <td><b>(<%= item.quantity %>)</b></td>
+  </tr>
+  <% end %> <% # END OF FOR %>
+  <tr>
+     <td colspan="2"><b>Total: <%= @cart.total_price%></b></td>
+  </tr>
+  <tr>
+     <td colspan="2"><%= button_to "Checkout" , checkout_path %></td>
+  </tr>
+  <% end %> <% # END OF IF %>
+</html>
